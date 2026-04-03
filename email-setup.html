@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EmailJS Setup Guide — Sapp's O-Line Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B81C1C; --yellow:#F5B800;
+  --bg:#0F0F0F; --bg2:#181818; --bg3:#222;
+  --gray:#888; --wht:#F4F0E8;
+}
+body{background:var(--bg);color:var(--wht);font-family:'Barlow',sans-serif;max-width:900px;margin:0 auto;padding:3rem 2rem;}
+
+h1{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:0.06em;margin-bottom:0.4rem;}
+.page-sub{font-size:0.85rem;color:var(--gray);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:3rem;padding-bottom:1rem;border-bottom:2px solid var(--red);}
+
+/* STEPS */
+.step{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-left:4px solid var(--red);padding:2rem 2rem 2rem 2rem;margin-bottom:1.5rem;position:relative;}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(184,28,28,0.15);position:absolute;top:0.5rem;right:1.2rem;line-height:1;}
+.step-label{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:900;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem;}
+.step-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;margin-bottom:1rem;}
+.step p{font-size:0.92rem;line-height:1.75;color:var(--gray);margin-bottom:0.8rem;}
+.step a{color:var(--yellow);text-decoration:none;}
+.step a:hover{text-decoration:underline;}
+.step strong{color:var(--wht);}
+
+/* CODE BLOCKS */
+.code-block{background:#0A0A0A;border:1px solid rgba(255,255,255,0.08);padding:1.5rem;margin:1rem 0;font-family:monospace;font-size:0.85rem;line-height:1.7;overflow-x:auto;position:relative;white-space:pre-wrap;word-break:break-word;}
+.code-block .var{color:var(--yellow);}
+.code-block .label{color:#6bc5f8;}
+.code-block .val{color:#a8ff8a;}
+.copy-btn{position:absolute;top:0.6rem;right:0.6rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:var(--gray);padding:0.3rem 0.8rem;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.2s;}
+.copy-btn:hover{background:rgba(184,28,28,0.2);color:var(--wht);border-color:var(--red);}
+.copy-btn.copied{background:rgba(26,122,58,0.3);color:#2ecc71;border-color:#2ecc71;}
+
+/* TEMPLATE BOXES */
+.template-card{background:var(--bg3);border:1px solid rgba(255,255,255,0.07);margin-top:1.5rem;}
+.template-header{background:rgba(184,28,28,0.15);padding:0.8rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.07);}
+.template-title{font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);}
+.template-note{font-size:0.7rem;color:var(--gray);}
+.template-body{padding:1.5rem;font-size:0.85rem;line-height:1.8;color:var(--gray);font-family:monospace;white-space:pre-wrap;}
+.template-body .tvar{color:var(--yellow);font-style:normal;}
+.template-body .thead{color:#fff;font-weight:700;}
+
+/* FIELDS TABLE */
+.fields-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.83rem;}
+.fields-table th{background:rgba(184,28,28,0.2);padding:0.6rem 1rem;text-align:left;font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;font-size:0.72rem;color:var(--wht);}
+.fields-table td{padding:0.55rem 1rem;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--gray);}
+.fields-table td:first-child{color:var(--yellow);font-family:monospace;font-size:0.82rem;}
+.fields-table tr:hover td{background:rgba(255,255,255,0.02);}
+
+/* CREDENTIALS FORM */
+.creds-form{background:var(--bg3);padding:1.5rem;margin-top:1.2rem;border:1px solid rgba(255,255,255,0.07);}
+.cred-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.cred-group label{display:block;font-size:0.67rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);margin-bottom:0.4rem;}
+.cred-group input{width:100%;background:#111;border:1px solid rgba(255,255,255,0.1);color:var(--wht);padding:0.7rem 0.9rem;font-family:monospace;font-size:0.85rem;outline:none;transition:border-color 0.2s;}
+.cred-group input:focus{border-color:var(--red);}
+.gen-btn{background:var(--red);color:#fff;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;padding:0.8rem 2rem;transition:background 0.2s;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.gen-btn:hover{background:#D42222;}
+
+.alert{background:rgba(245,184,0,0.08);border:1px solid rgba(245,184,0,0.3);padding:1rem 1.2rem;margin-top:1.2rem;font-size:0.85rem;color:var(--gray);line-height:1.6;}
+.alert strong{color:var(--yellow);}
+
+.success-note{background:rgba(26,122,58,0.1);border:1px solid rgba(46,204,113,0.3);padding:1rem 1.2rem;margin-top:1rem;font-size:0.85rem;color:#2ecc71;line-height:1.6;}
+
+.footer{text-align:center;padding:2rem 0;font-size:0.72rem;color:rgba(255,255,255,0.2);letter-spacing:0.12em;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.06);}
+.footer span{color:rgba(245,184,0,0.4);}
+</style>
+  <meta name="generator" content="Phoenix Blueprint">
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+<h1>EmailJS Setup Guide</h1>
+<div class="page-sub">Sapp's O-Line Academy · Plug-and-Play Email Configuration</div>
+
+<!-- STEP 1 -->
+<div class="step">
+  <div class="step-num">01</div>
+  <div class="step-label">Account</div>
+  <div class="step-title">CREATE YOUR FREE EMAILJS ACCOUNT</div>
+  <p>Go to <a href="https://www.emailjs.com" target="_blank">emailjs.com</a> and sign up for a free account. The free plan gives you <strong>200 emails per month</strong> — plenty to start.</p>
+  <p>Once logged in, click <strong>"Email Services"</strong> in the left menu → <strong>"Add New Service"</strong> → choose <strong>Gmail</strong> (or whichever email Coach Sapp uses) → connect the account.</p>
+  <p>Copy and save your <strong>Service ID</strong> — it looks like: <code style="color:var(--yellow);">service_xxxxxxx</code></p>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <div class="step-num">02</div>
+  <div class="step-label">Templates</div>
+  <div class="step-title">CREATE TWO EMAIL TEMPLATES</div>
+  <p>In the EmailJS dashboard click <strong>"Email Templates"</strong> → <strong>"Create New Template"</strong>. You need two templates — one for athletes/parents, one for Coach Sapp.</p>
+  <p>Copy and paste each template below exactly as shown. The <span style="color:var(--yellow);">{{variable}}</span> tags are automatically filled in when someone registers.</p>
+
+  <!-- TEMPLATE 1: ATHLETE CONFIRMATION -->
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-title">Template 1 — Athlete / Parent Confirmation</div>
+      <div class="template-note">To: {{to_email}} (parent's email)</div>
+    </div>
+    <div class="template-body">
+<span class="thead">SUBJECT LINE:</span>
+You're Registered! <span class="tvar">{{session}}</span> — Sapp's O-Line Academy
+
+<span class="thead">— — — BODY — — —</span>
+
+Hey <span class="tvar">{{parent_name}}</span>,
+
+<span class="tvar">{{athlete_name}}</span> is officially registered for <strong>Sapp's O-Line Academy</strong>. Coach Sapp will be in touch to confirm all details.
+
+<span class="thead">SESSION DETAILS</span>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Session:   <span class="tvar">{{session}}</span>
+Date:      <span class="tvar">{{session_date}}</span>
+Time:      <span class="tvar">{{session_time}}</span>
+Location:  <span class="tvar">{{session_location}}</span>
+Price:     <span class="tvar">{{session_price}}</span>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+<span class="thead">WHAT TO BRING</span>
+<span class="tvar">{{bring}}</span>
+
+<span class="thead">PAYMENT</span>
+Complete your payment here:
+<span class="tvar">{{payment_link}}</span>
+
+<span class="thead">ATHLETE INFO ON FILE</span>
+Athlete:   <span class="tvar">{{athlete_name}}</span>
+School:    <span class="tvar">{{school}}</span>
+Position:  <span class="tvar">{{position}}</span>
+Grad Year: <span class="tvar">{{grad_year}}</span>
+
+Questions? Call or text Coach Sapp at (218) 979-3756.
+
+"The Grind is Undefeated."
+— Coach Sapp
+
+Sapp's O-Line Academy
+SappsOLineAcademy.com
+    </div>
+  </div>
+
+  <!-- TEMPLATE 2: COACH NOTIFICATION -->
+  <div class="template-card" style="margin-top:1.2rem;">
+    <div class="template-header">
+      <div class="template-title">Template 2 — Coach Sapp Notification</div>
+      <div class="template-note">To: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="57232e25383932243627272425241736383b7934383a">[email&#160;protected]</a> (Coach Sapp)</div>
+    </div>
+    <div class="template-body">
+<span class="thead">SUBJECT LINE:</span>
+New Registration: <span class="tvar">{{athlete_name}}</span> — <span class="tvar">{{session}}</span>
+
+<span class="thead">— — — BODY — — —</span>
+
+Coach Sapp, you have a new athlete registration.
+
+<span class="thead">ATHLETE</span>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name:       <span class="tvar">{{athlete_name}}</span>
+School:     <span class="tvar">{{school}}</span>
+Position:   <span class="tvar">{{position}}</span>
+Grad Year:  <span class="tvar">{{grad_year}}</span>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+<span class="thead">PARENT / GUARDIAN</span>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name:    <span class="tvar">{{parent_name}}</span>
+Phone:   <span class="tvar">{{parent_phone}}</span>
+Email:   <span class="tvar">{{parent_email}}</span>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+<span class="thead">SESSION REGISTERED FOR</span>
+Session:   <span class="tvar">{{session}}</span>
+Date:      <span class="tvar">{{session_date}}</span>
+Time:      <span class="tvar">{{session_time}}</span>
+Price:     <span class="tvar">{{session_price}}</span>
+
+— Sapp's O-Line Academy Registration System
+    </div>
+  </div>
+
+  <div class="alert" style="margin-top:1.2rem;">
+    <strong>Important:</strong> After creating each template, set the <strong>"To Email"</strong> field to <code style="color:var(--yellow);">{{to_email}}</code> for Template 1 and your actual email for Template 2. Save both and copy each <strong>Template ID</strong> (looks like <code style="color:var(--yellow);">template_xxxxxxx</code>).
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <div class="step-num">03</div>
+  <div class="step-label">Variables</div>
+  <div class="step-title">ALL AVAILABLE TEMPLATE VARIABLES</div>
+  <p>Every variable below is automatically passed from the registration form. Use any of them in your templates by wrapping in double curly braces.</p>
+  <table class="fields-table">
+    <thead><tr><th>Variable</th><th>What it contains</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>{{athlete_name}}</td><td>Athlete's full name</td><td>Marcus Johnson</td></tr>
+      <tr><td>{{parent_name}}</td><td>Parent / guardian name</td><td>David Johnson</td></tr>
+      <tr><td>{{parent_email}}</td><td>Parent's email address</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="187c796e717c587d75797174367b7775">[email&#160;protected]</a></td></tr>
+      <tr><td>{{parent_phone}}</td><td>Parent's phone number</td><td>(214) 555-0123</td></tr>
+      <tr><td>{{school}}</td><td>Athlete's school</td><td>Duncanville High School</td></tr>
+      <tr><td>{{position}}</td><td>Athlete's position</td><td>Left Tackle (LT)</td></tr>
+      <tr><td>{{grad_year}}</td><td>Graduation year</td><td>2027</td></tr>
+      <tr><td>{{session}}</td><td>Session they registered for</td><td>Group OLine Training</td></tr>
+      <tr><td>{{session_date}}</td><td>Session date</td><td>Sat, Jan 18, 2026</td></tr>
+      <tr><td>{{session_time}}</td><td>Session time</td><td>10:00 AM – 12:00 PM</td></tr>
+      <tr><td>{{session_location}}</td><td>Session address</td><td>Wildcat Field, 123 Main St</td></tr>
+      <tr><td>{{session_price}}</td><td>Session price</td><td>$35</td></tr>
+      <tr><td>{{payment_link}}</td><td>Link to pay</td><td>https://pay.example.com/...</td></tr>
+      <tr><td>{{bring}}</td><td>What to bring</td><td>Cleats, helmet, water</td></tr>
+      <tr><td>{{to_email}}</td><td>Parent's email (for routing)</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5c1c4d3ccc1e5c0c8c4ccc98bc6cac8">[email&#160;protected]</a></td></tr>
+      <tr><td>{{coach_email}}</td><td>Coach Sapp's email</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7c08050e1312190f1d0c0c0f0e0f3c1d1310521f1311">[email&#160;protected]</a></td></tr>
+      <tr><td>{{academy}}</td><td>Academy name</td><td>Sapp's O-Line Academy</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <div class="step-num">04</div>
+  <div class="step-label">Credentials</div>
+  <div class="step-title">PLUG IN YOUR KEYS — AUTO-GENERATE THE CODE</div>
+  <p>Enter your three EmailJS credentials below and click <strong>Generate Code</strong>. Copy the result and paste it into <code style="color:var(--yellow);">coach-sapp.html</code> — replacing the three placeholder lines near the top of the script section.</p>
+
+  <div class="creds-form">
+    <div class="cred-row">
+      <div class="cred-group">
+        <label>Service ID</label>
+        <input type="text" id="inp-service" placeholder="service_xxxxxxx">
+      </div>
+      <div class="cred-group">
+        <label>Template 1 ID (Athlete)</label>
+        <input type="text" id="inp-template1" placeholder="template_xxxxxxx">
+      </div>
+      <div class="cred-group">
+        <label>Public Key</label>
+        <input type="text" id="inp-pubkey" placeholder="xxxxxxxxxxxxxxxxxxx">
+      </div>
+    </div>
+    <div class="cred-group" style="margin-bottom:1rem;">
+      <label>Template 2 ID (Coach Notification)</label>
+      <input type="text" id="inp-template2" placeholder="template_xxxxxxx" style="max-width:300px;">
+    </div>
+    <button class="gen-btn" onclick="generateCode()">Generate Code</button>
+  </div>
+
+  <div class="code-block" id="generated-code" style="display:none; margin-top:1.2rem;">
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    <span id="code-output"></span>
+  </div>
+
+  <div class="alert">
+    <strong>Where to paste it:</strong> Open <code style="color:var(--yellow);">coach-sapp.html</code> → search for <code style="color:var(--yellow);">EMAILJS_SERVICE_ID</code> → replace the entire 4-line block with the generated code above.
+  </div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <div class="step-num">05</div>
+  <div class="step-label">Two emails</div>
+  <div class="step-title">SENDING BOTH EMAILS ON REGISTRATION</div>
+  <p>The site sends <strong>two emails</strong> on every registration — one to the parent, one to Coach Sapp. The second email (coach notification) uses Template 2. After you've added your credentials, find the section in <code style="color:var(--yellow);">coach-sapp.html</code> that says <code style="color:var(--yellow);">// Send email if EmailJS configured</code> and replace it with this:</p>
+
+  <div class="code-block" id="two-email-code">
+    <button class="copy-btn" onclick="copyBlock('two-email-code', this)">Copy</button>
+  try {
+    if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+      <span class="label">// Email 1: Confirmation to parent/athlete</span>
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        ...params, to_email: params.parent_email
+      });
+      <span class="label">// Email 2: Notification to Coach Sapp</span>
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE2_ID, {
+        ...params, to_email: COACH_EMAIL
+      });
+    }
+  } catch(err) { console.log('Email error:', err); }
+  </div>
+
+  <p style="margin-top:1rem;">Also add this line near the top of the credentials block in <code style="color:var(--yellow);">coach-sapp.html</code>:</p>
+  <div class="code-block" id="template2-line">
+    <button class="copy-btn" onclick="copyBlock('template2-line', this)">Copy</button>
+<span class="label">// Add this line below EMAILJS_PUBLIC_KEY</span>
+<span class="var">const EMAILJS_TEMPLATE2_ID = '<span id="t2-placeholder" style="color:var(--yellow);">YOUR_TEMPLATE2_ID</span>';</span>
+  </div>
+</div>
+
+<!-- STEP 6 -->
+<div class="step">
+  <div class="step-num">06</div>
+  <div class="step-label">Test</div>
+  <div class="step-title">TEST IT BEFORE GOING LIVE</div>
+  <p>Once everything is set up:</p>
+  <p><strong>1.</strong> Open the admin panel → add a test session → save it.</p>
+  <p><strong>2.</strong> Open the main site → scroll to the registration form → fill it out with a real email address → submit.</p>
+  <p><strong>3.</strong> Check that email inbox — you should receive the athlete confirmation within 30 seconds.</p>
+  <p><strong>4.</strong> Check Coach Sapp's email — he should get the notification at the same time.</p>
+  <div class="success-note">
+    ✓ If both emails arrive — you're fully live. Every registration from that point on is automated.
+  </div>
+  <div class="alert" style="margin-top:1rem;">
+    <strong>Free tier limit:</strong> EmailJS free gives you 200 emails/month. Since every registration sends 2 emails, that's 100 registrations/month for free. When Coach Sapp grows past that, upgrade to EmailJS Personal ($15/mo for 1,000 emails) — still way cheaper than any booking platform.
+  </div>
+</div>
+
+<div class="footer">EmailJS Setup Guide — Sapp's O-Line Academy · Built by <span>The Phoenix Blueprint</span></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function generateCode() {
+  const svc = document.getElementById('inp-service').value.trim() || 'YOUR_SERVICE_ID';
+  const t1  = document.getElementById('inp-template1').value.trim() || 'YOUR_TEMPLATE_ID';
+  const t2  = document.getElementById('inp-template2').value.trim() || 'YOUR_TEMPLATE2_ID';
+  const key = document.getElementById('inp-pubkey').value.trim() || 'YOUR_PUBLIC_KEY';
+
+  document.getElementById('t2-placeholder').textContent = t2;
+
+  const code = `const EMAILJS_SERVICE_ID  = '${svc}';
+const EMAILJS_TEMPLATE_ID = '${t1}';
+const EMAILJS_TEMPLATE2_ID= '${t2}';
+const EMAILJS_PUBLIC_KEY  = '${key}';
+const COACH_EMAIL         = 'tyronesappsrs@aol.com';
+if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}`;
+
+  const out = document.getElementById('code-output');
+  out.textContent = code;
+  document.getElementById('generated-code').style.display = 'block';
+  document.getElementById('generated-code').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function copyCode(btn) {
+  const text = document.getElementById('code-output').textContent;
+  navigator.

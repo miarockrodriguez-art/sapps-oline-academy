@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Polly — Setup Guide | Sapp's O-Line Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#B81C1C;--yellow:#F5B800;--bg:#0F0F0F;--bg2:#181818;--bg3:#222;--gray:#888;--wht:#F4F0E8;}
+body{background:var(--bg);color:var(--wht);font-family:"Barlow",sans-serif;max-width:860px;margin:0 auto;padding:3rem 2rem;}
+.cover{background:var(--bg2);border-left:4px solid var(--red);padding:2rem;margin-bottom:3rem;}
+.cover-tag{font-family:"Barlow Condensed",sans-serif;font-size:0.72rem;font-weight:900;letter-spacing:0.35em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;}
+.cover-title{font-family:"Bebas Neue",sans-serif;font-size:3rem;letter-spacing:0.05em;line-height:1;}
+.cover-sub{font-size:0.88rem;color:var(--gray);margin-top:0.6rem;line-height:1.6;}
+.cover-sub strong{color:var(--yellow);}
+.step{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);padding:2rem;margin-bottom:1.2rem;position:relative;}
+.step-num{position:absolute;top:1rem;right:1.5rem;font-family:"Bebas Neue",sans-serif;font-size:4rem;color:rgba(184,28,28,0.1);line-height:1;}
+.step-tag{font-family:"Barlow Condensed",sans-serif;font-size:0.68rem;font-weight:900;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem;}
+.step-title{font-family:"Bebas Neue",sans-serif;font-size:1.6rem;letter-spacing:0.04em;margin-bottom:1rem;}
+.step p{font-size:0.9rem;line-height:1.75;color:var(--gray);margin-bottom:0.7rem;}
+.step strong{color:var(--wht);}
+.step a{color:var(--yellow);text-decoration:none;}
+.cmd{background:#0A0A0A;border:1px solid rgba(255,255,255,0.08);border-left:3px solid var(--yellow);padding:0.8rem 1.2rem;font-family:monospace;font-size:0.85rem;color:var(--yellow);margin:0.8rem 0;letter-spacing:0.05em;}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-top:0.8rem;}
+.checklist li{font-size:0.88rem;color:var(--gray);display:flex;align-items:flex-start;gap:0.8rem;line-height:1.5;}
+.checklist li::before{content:"☐";color:var(--red);font-size:1rem;flex-shrink:0;}
+.note{background:rgba(245,184,0,0.07);border:1px solid rgba(245,184,0,0.25);padding:0.9rem 1.1rem;font-size:0.82rem;color:var(--gray);line-height:1.6;margin-top:0.8rem;}
+.note strong{color:var(--yellow);}
+.success{background:rgba(26,122,58,0.1);border:1px solid rgba(46,204,113,0.25);padding:0.9rem 1.1rem;font-size:0.85rem;color:#2ecc71;margin-top:1rem;}
+.files-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
+.file-card{background:var(--bg3);padding:1.2rem;border:1px solid rgba(255,255,255,0.07);border-top:2px solid var(--red);}
+.file-name{font-family:monospace;font-size:0.85rem;color:var(--yellow);margin-bottom:0.4rem;}
+.file-desc{font-size:0.78rem;color:var(--gray);line-height:1.5;}
+.file-where{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-top:0.6rem;}
+.file-where.public{color:#2ecc71;}
+.file-where.private{color:var(--red);}
+footer{text-align:center;padding:2rem 0;font-size:0.7rem;color:rgba(255,255,255,0.2);margin-top:2rem;border-top:1px solid rgba(255,255,255,0.06);}
+footer span{color:rgba(245,184,0,0.4);}
+</style>
+  <meta name="generator" content="Phoenix Blueprint">
+  <meta name="robots" content="noindex">
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">Internal — The Phoenix Blueprint</div>
+  <div class="cover-title">POLLY SETUP GUIDE</div>
+  <div class="cover-sub">Sapp's O-Line Academy · Full deployment checklist<br>
+  <strong>Complete these steps in order. Estimated time: 25–35 minutes.</strong></div>
+</div>
+
+<!-- FILES OVERVIEW -->
+<div class="step">
+  <div class="step-num">00</div>
+  <div class="step-tag">File Overview</div>
+  <div class="step-title">FILES YOU HAVE</div>
+  <div class="files-grid">
+    <div class="file-card">
+      <div class="file-name">index.html</div>
+      <div class="file-desc">The live public website. This is the only file that goes on Cloudflare.</div>
+      <div class="file-where public">→ Upload to Cloudflare Pages</div>
+    </div>
+    <div class="file-card">
+      <div class="file-name">sapp-admin.html</div>
+      <div class="file-desc">Admin panel for Coach Sapp to manage sessions. Keep private.</div>
+      <div class="file-where private">→ Send directly to Coach Sapp only</div>
+    </div>
+    <div class="file-card">
+      <div class="file-name">sapp-emailjs-setup.html</div>
+      <div class="file-desc">Your EmailJS configuration guide with code generator.</div>
+      <div class="file-where private">→ Internal use — follow steps 3 & 4 below</div>
+    </div>
+    <div class="file-card">
+      <div class="file-name">sapp-brand-kit.html</div>
+      <div class="file-desc">Full brand guide for Coach Sapp's social media and design.</div>
+      <div class="file-where public">→ Send to Coach Sapp</div>
+    </div>
+    <div class="file-card">
+      <div class="file-name">sapp-business-cards.html</div>
+      <div class="file-desc">Print-ready business cards front and back.</div>
+      <div class="file-where public">→ Send to Coach Sapp or print directly</div>
+    </div>
+    <div class="file-card">
+      <div class="file-name">sapp-emailjs-setup.html</div>
+      <div class="file-desc">EmailJS template guide with plug-and-play code generator.</div>
+      <div class="file-where private">→ Internal setup use only</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 1 -->
+<div class="step">
+  <div class="step-num">01</div>
+  <div class="step-tag">Cloudflare Pages</div>
+  <div class="step-title">DEPLOY THE WEBSITE</div>
+  <p>Log into the Cloudflare dashboard at <a href="https://dash.cloudflare.com" target="_blank">dash.cloudflare.com</a> using the Phoenix Blueprint account credentials.</p>
+  <ul class="checklist">
+    <li>Click <strong>Pages</strong> in the left sidebar</li>
+    <li>Click <strong>Create a project</strong> → select <strong>Direct Upload</strong></li>
+    <li>Name the project: <strong>sapps-oline-academy</strong></li>
+    <li>Upload the file named <strong>index.html</strong> (make sure it's named exactly index.html)</li>
+    <li>Click <strong>Deploy site</strong></li>
+    <li>Wait ~30 seconds — Cloudflare will give you a live URL</li>
+    <li>Copy the URL (will look like <strong>sapps-oline-academy.pages.dev</strong>) and save it</li>
+  </ul>
+  <div class="success">✓ Site is live. Test it by opening the URL in a browser — you should see the full Sapp's O-Line Academy website.</div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <div class="step-num">02</div>
+  <div class="step-tag">Custom Domain (Optional)</div>
+  <div class="step-title">CONNECT COACH SAPP'S DOMAIN</div>
+  <p>If Coach Sapp has a domain (e.g. sappsoline.com), connect it now. If not, skip to Step 3 — the .pages.dev URL works fine for now.</p>
+  <ul class="checklist">
+    <li>In Cloudflare Pages, open the <strong>sapps-oline-academy</strong> project</li>
+    <li>Click <strong>Custom domains</strong> → <strong>Set up a custom domain</strong></li>
+    <li>Enter the domain name → Cloudflare will auto-configure DNS (since we're already on Cloudflare)</li>
+    <li>Wait 2–5 minutes for DNS propagation</li>
+    <li>SSL certificate is issued automatically — no action needed</li>
+  </ul>
+  <div class="note"><strong>Note:</strong> If the domain is registered elsewhere (GoDaddy, Namecheap etc.) the nameservers need to be pointed to Cloudflare first. Check with the account owner.</div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+  <div class="step-num">03</div>
+  <div class="step-tag">EmailJS</div>
+  <div class="step-title">SET UP EMAIL CONFIRMATIONS</div>
+  <p>Open <strong>sapp-emailjs-setup.html</strong> in a browser and follow all 6 steps. This connects the registration form to send automatic emails to parents and Coach Sapp on every new signup.</p>
+  <ul class="checklist">
+    <li>Go to <a href="https://emailjs.com" target="_blank">emailjs.com</a> → create a free account</li>
+    <li>Add Gmail service → connect Coach Sapp's email: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="314548435e5f544250414142434271505e5d1f525e5c">[email&#160;protected]</a></strong></li>
+    <li>Create <strong>Template 1</strong> (athlete confirmation) — copy from the setup guide</li>
+    <li>Create <strong>Template 2</strong> (coach notification) — copy from the setup guide</li>
+    <li>Open the setup guide → enter Service ID, Template IDs, and Public Key → click <strong>Generate Code</strong></li>
+    <li>Copy the generated code block</li>
+    <li>Open <strong>index.html</strong> in a text editor → search for <strong>EMAILJS_SERVICE_ID</strong> → replace the 4-line credentials block with the generated code</li>
+    <li>Re-upload the updated index.html to Cloudflare Pages (drag and drop again)</li>
+  </ul>
+  <div class="cmd">Search term in index.html: const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';</div>
+  <div class="success">✓ Test by submitting the registration form on the live site with a real email address. Both emails should arrive within 60 seconds.</div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+  <div class="step-num">04</div>
+  <div class="step-tag">Admin Panel</div>
+  <div class="step-title">DELIVER ADMIN PANEL TO COACH SAPP</div>
+  <p>The admin panel is a standalone file that Coach Sapp keeps on his own device. It does NOT go on Cloudflare.</p>
+  <ul class="checklist">
+    <li>Send <strong>sapp-admin.html</strong> to Coach Sapp via email or text (AirDrop works great for iPhone)</li>
+    <li>Tell him to save it to his phone or laptop — he opens it in Safari or Chrome like a normal website</li>
+    <li>Default login: Username <strong>coachsapp</strong> / Password <strong>OLine75!</strong></li>
+    <li>Recommend he changes the password — open the file in a text editor and change the CREDENTIALS line near the bottom</li>
+    <li>Confirm he can log in and add a test session</li>
+    <li>Have him open the live website on the same device/browser and confirm the session ticker appears</li>
+  </ul>
+  <div class="note"><strong>Important:</strong> The admin panel and the website must be opened in the <strong>same browser</strong> on the same device for the session ticker to sync (they use localStorage). Recommend Chrome or Safari.</div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+  <div class="step-num">05</div>
+  <div class="step-tag">Deliverables</div>
+  <div class="step-title">SEND THESE FILES TO COACH SAPP</div>
+  <ul class="checklist">
+    <li><strong>sapp-admin.html</strong> — his session management panel</li>
+    <li><strong>sapp-brand-kit.html</strong> — his brand and social media guide</li>
+    <li><strong>sapp-business-cards.html</strong> — tell him to open it and Ctrl+P to print</li>
+    <li>The <strong>live website URL</strong> from Cloudflare</li>
+    <li>His login credentials for the admin panel</li>
+  </ul>
+</div>
+
+<!-- STEP 6 -->
+<div class="step">
+  <div class="step-num">06</div>
+  <div class="step-tag">Final Checks</div>
+  <div class="step-title">PRE-LAUNCH CHECKLIST</div>
+  <ul class="checklist">
+    <li>Website loads correctly on desktop browser</li>
+    <li>Website loads correctly on mobile (iPhone Safari)</li>
+    <li>Session ticker shows when admin saves a session</li>
+    <li>Registration form submits successfully</li>
+    <li>Parent confirmation email received</li>
+    <li>Coach Sapp notification email received</li>
+    <li>Calendar .ics file downloads on "Add to Calendar" click</li>
+    <li>Partner fields show Eagle Nest Park and Central Florida Christian Academy</li>
+    <li>All nav links scroll to correct sections</li>
+    <li>Booking form visible and functional</li>
+    <li>Waiver checkbox required before form submits</li>
+    <li>Headshot upload shows preview</li>
+    <li>Brand kit opens and displays correctly</li>
+    <li>Business cards print correctly (Ctrl+P from browser)</li>
+  </ul>
+  <div class="success">✓ All checks pass = ready to go live. Send the URL to Coach Sapp.</div>
+</div>
+
+<
