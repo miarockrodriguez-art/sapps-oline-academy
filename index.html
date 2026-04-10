@@ -121,8 +121,12 @@ h1 .out { -webkit-text-stroke:2px rgba(255,255,255,0.2); color:transparent; }
 h2 { font-family:"Bebas Neue",sans-serif; font-size:clamp(2.8rem,5.5vw,5rem); line-height:0.92; color:var(--wht); }
 
 /* ABOUT */
-#about { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; border-top:4px solid var(--red); }
-.a-frame { position:relative; aspect-ratio:4/5; overflow:hidden; }
+#about { position:relative; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; border-top:4px solid var(--red); min-height:600px; overflow:hidden; }
+.a-frame { position:relative; aspect-ratio:4/5; overflow:hidden; display:none; }
+#about .a-frame-bg { position:absolute; inset:0; z-index:0; }
+#about .a-frame-bg img { width:100%; height:100%; object-fit:cover; object-position:center center; }
+#about .a-frame-bg::after { content:""; position:absolute; inset:0; background:linear-gradient(to right, transparent 50%, var(--bg2) 90%); }
+.a-text { position:relative; z-index:2; }
 /*  ABOUT PHOTO — swap src below with Coach Sapp's actual photo */
 .a-frame img { width:100%; height:100%; object-fit:cover; object-position:top; }
 .a-frame::after { content:"COACH SAPP"; position:absolute; bottom:0; left:0; right:0; padding:4rem 1.8rem 1.4rem; background:linear-gradient(to top,rgba(0,0,0,0.93),transparent); font-family:"Bebas Neue",sans-serif; font-size:2.1rem; letter-spacing:0.1em; }
@@ -479,6 +483,7 @@ footer img { height:42px; }
 
 <!-- ABOUT -->
 <section id="about" class="sec bg2">
+  <div class="a-frame-bg"><img src="images/academy/coach-sapp-sr/hero-bg.jpg" alt="" aria-hidden="true"></div>
   <div class="rv" style="position:relative;">
     <div class="a-frame">
       <img src="images/academy/coach-sapp-sr/hero-bg.jpg" alt="Coach Sapp" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center center;">
