@@ -850,7 +850,7 @@ footer img { height:42px; }
         <div class="fg"><label>Athlete Age / Grade</label><input type="text" placeholder="e.g. 14 / 9th grade"></div>
       </div>
       <div class="fg"><label>Preferred Days / Times</label><textarea placeholder="e.g. Weekday afternoons, Saturday mornings..."></textarea></div>
-      <button class="fsub" type="button">Request Session →</button>
+      <button class="fsub" type="button">Request Information →</button>
     </div>
   </div>
 </section>
@@ -1576,7 +1576,7 @@ document.querySelector(".fsub").addEventListener("click", function(){
   let ok=true; inputs.forEach(i=>{if(!i.value)ok=false;});
   if(!ok){ this.textContent="Please fill all fields "; return; }
   this.textContent="Sent!"; this.style.background="green";
-  setTimeout(()=>{ this.textContent="Request Session \u2192"; this.style.background=""; }, 3000);
+  setTimeout(()=>{ this.textContent="Request Information \u2192"; this.style.background=""; }, 3000);
 });
 
 // Hero carousel
