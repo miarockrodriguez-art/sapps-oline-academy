@@ -392,6 +392,8 @@ footer img { height:42px; }
 .rv.on { opacity:1; transform:none; }
 .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
 @keyframes up { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes pulseGlow { 0%,100%{text-shadow:0 0 8px rgba(0,0,0,0.2)} 50%{text-shadow:0 0 20px rgba(184,28,28,0.6),0 0 40px rgba(184,28,28,0.3)} }
 
 /* RESPONSIVE */
 @media(max-width:960px){ .pr-grid{grid-template-columns:1fr !important; gap:1rem; grid-auto-rows:auto;} .prc{height:auto !important;} 
@@ -857,7 +859,12 @@ footer img { height:42px; }
 
 <!-- COACHES CORNER -->
 <section id="coaches-corner" class="sec" style="background:linear-gradient(135deg,#0D0000,#141414);border-top:4px solid var(--yellow);border-bottom:4px solid var(--yellow);position:relative;">
-  <div style="position:absolute;top:2rem;right:2rem;z-index:10;background:var(--yellow);color:#000;font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;padding:0.5rem 1.5rem;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);">COMING SOON</div>
+  <div style="position:absolute;top:0;left:0;right:0;z-index:10;overflow:hidden;background:var(--yellow);padding:0.6rem 0;">
+    <div style="display:flex;animation:marquee 12s linear infinite;white-space:nowrap;">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:1.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#000;padding:0 3rem;animation:pulseGlow 2s ease-in-out infinite;">★ COMING SOON ★ COMING SOON ★ COMING SOON ★ COMING SOON ★ COMING SOON ★ COMING SOON ★</span>
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:1.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#000;padding:0 3rem;animation:pulseGlow 2s ease-in-out infinite;">★ COMING SOON ★ COMING SOON ★ COMING SOON ★ COMING SOON ★ COMING SOON ★ COMING SOON ★</span>
+    </div>
+  </div>
   <div class="lbl rv"><span class="lbl-line"></span>For Coaches<span class="lbl-line"></span></div>
   <h2 class="rv" style="color:var(--yellow);">COACHES <span style="color:var(--wht);">CORNER</span></h2>
   <p class="rv" style="max-width:600px;margin-bottom:3rem;color:var(--gray);font-size:1rem;line-height:1.7;">Join Coach Sapp and Coach TJ inside the Coaches Corner — a members-only space built for coaches who are serious about developing dominant offensive linemen.</p>
