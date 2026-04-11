@@ -61,11 +61,26 @@ ul.nm a:hover { color:var(--wht); }
 .bf-location .loc-icon { color:var(--red); font-size:1.2rem; flex-shrink:0; }
 .bf-location .loc-text { font-size:0.9rem; color:var(--gray); line-height:1.5; }
 .bf-location .loc-text strong { color:var(--wht); display:block; font-size:0.95rem; }
-.bf-waiver { display:flex; gap:0.8rem; align-items:flex-start; margin-top:1.5rem; padding:1.2rem; background:rgba(245,184,0,0.05); border:1px solid rgba(245,184,0,0.15); cursor:pointer; }
-.bf-waiver input[type="checkbox"] { flex-shrink:0; width:20px; height:20px; accent-color:var(--red); margin-top:2px; cursor:pointer; }
-.bf-waiver span { font-size:0.88rem; color:var(--gray); line-height:1.6; }
-.bf-waiver a { color:var(--yellow); text-decoration:underline; font-weight:700; }
-.bf-waiver a:hover { color:var(--wht); }
+.bf-waiver-wrap { margin-top:1.5rem; border:1px solid rgba(245,184,0,0.15); background:rgba(245,184,0,0.05); }
+.bf-waiver-toggle { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.2rem; cursor:pointer; user-select:none; }
+.bf-waiver-toggle:hover { background:rgba(245,184,0,0.08); }
+.bf-waiver-toggle span { font-family:"Barlow Condensed",sans-serif; font-size:0.82rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); }
+.bf-waiver-arrow { color:var(--yellow); font-size:1.2rem; transition:transform 0.3s; }
+.bf-waiver-wrap.open .bf-waiver-arrow { transform:rotate(180deg); }
+.bf-waiver-body { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
+.bf-waiver-wrap.open .bf-waiver-body { max-height:2000px; }
+.bf-waiver-content { padding:0 1.2rem 1.2rem; font-size:0.82rem; color:var(--gray); line-height:1.8; }
+.bf-waiver-content h4 { font-family:"Bebas Neue",sans-serif; font-size:1.1rem; color:var(--wht); letter-spacing:0.04em; margin:1.2rem 0 0.5rem; }
+.bf-waiver-content h4:first-child { margin-top:0; }
+.bf-waiver-content strong { color:var(--wht); }
+.bf-waiver-content ul { list-style:none; margin:0.5rem 0; }
+.bf-waiver-content ul li { padding-left:1rem; position:relative; margin-bottom:0.3rem; }
+.bf-waiver-content ul li::before { content:""; position:absolute; left:0; top:0.55rem; width:5px; height:5px; background:var(--red); }
+.bf-waiver-link { display:inline-block; margin-top:0.8rem; color:var(--yellow); text-decoration:underline; font-weight:700; font-size:0.8rem; }
+.bf-waiver-link:hover { color:var(--wht); }
+.bf-waiver-check { display:flex; gap:0.8rem; align-items:flex-start; padding:1rem 1.2rem; border-top:1px solid rgba(245,184,0,0.15); cursor:pointer; }
+.bf-waiver-check input[type="checkbox"] { flex-shrink:0; width:20px; height:20px; accent-color:var(--red); margin-top:2px; cursor:pointer; }
+.bf-waiver-check span { font-size:0.88rem; color:var(--gray); line-height:1.6; }
 .bf-submit { width:100%; margin-top:1.8rem; padding:1rem; background:var(--red); color:var(--wht); border:none; font-family:"Barlow Condensed",sans-serif; font-size:1.1rem; font-weight:900; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:background 0.2s; }
 .bf-submit:hover:not(:disabled) { background:var(--red-b); }
 .bf-submit:disabled { background:#333; cursor:not-allowed; opacity:0.5; }
@@ -198,10 +213,41 @@ footer img { height:42px; }
       <input type="email" id="bf-email" name="email" placeholder="your@email.com">
     </div>
 
-    <label class="bf-waiver">
-      <input type="checkbox" id="bf-waiver-chk" onchange="document.getElementById('bf-btn').disabled=!this.checked">
-      <span>I have read and agree to the <a href="waiver.html" target="_blank">Athletic Participation Waiver</a></span>
-    </label>
+    <div class="bf-waiver-wrap" id="waiverWrap">
+      <div class="bf-waiver-toggle" onclick="document.getElementById('waiverWrap').classList.toggle('open')">
+        <span>Athletic Participation Waiver</span>
+        <div class="bf-waiver-arrow">&#9660;</div>
+      </div>
+      <div class="bf-waiver-body">
+        <div class="bf-waiver-content">
+          <h4>Assumption of Risk & Liability Waiver</h4>
+          <p>I acknowledge that participation in football training, strength and conditioning, and related athletic activities conducted by <strong>SAPP'S O-Line Academy</strong> involves inherent risks including but not limited to: physical contact, muscle strains, sprains, fractures, concussions, heat-related illness, and other bodily injury. I voluntarily assume all risks associated with participation.</p>
+          <p style="margin-top:0.8rem;">I hereby <strong>release, waive, and forever discharge</strong> SAPP'S O-Line Academy, its owner <strong>Tyrone Sapp Sr.</strong>, coach <strong>Tyrone Sapp Jr. (Coach TJ)</strong>, all coaching staff, assistants, volunteers, and affiliated parties from any and all liability, claims, demands, or causes of action arising from injury, illness, death, or property damage — whether caused by negligence or otherwise.</p>
+
+          <h4>Medical Authorization</h4>
+          <p>In the event of injury or medical emergency, I authorize coaching staff to seek and obtain emergency medical treatment on behalf of the participant. I agree to bear all costs of such treatment.</p>
+
+          <h4>Photo & Video Release</h4>
+          <p>I grant <strong>SAPP'S O-Line Academy</strong> the irrevocable right to photograph, video record, and use the participant's name, image, and likeness in any media — including websites, social media, print materials, and promotional videos — without compensation or further consent.</p>
+
+          <h4>Code of Conduct</h4>
+          <ul>
+            <li>Show respect to all coaches, staff, and fellow athletes</li>
+            <li>Follow all instructions and safety guidelines</li>
+            <li>No bullying, harassment, or unsportsmanlike behavior</li>
+            <li>Arrive on time and prepared for all sessions</li>
+            <li>Report any injury or concern to staff immediately</li>
+          </ul>
+          <p style="margin-top:0.8rem;"><strong>Violation may result in removal from the program without refund.</strong></p>
+
+          <a href="waiver.html" target="_blank" class="bf-waiver-link">View Full Waiver &rarr;</a>
+        </div>
+        <label class="bf-waiver-check">
+          <input type="checkbox" id="bf-waiver-chk" onchange="document.getElementById('bf-btn').disabled=!this.checked">
+          <span>I have read and agree to the Athletic Participation Waiver</span>
+        </label>
+      </div>
+    </div>
 
     <button class="bf-submit" id="bf-btn" type="button" onclick="submitBooking()" disabled>Book Now &rarr;</button>
 
