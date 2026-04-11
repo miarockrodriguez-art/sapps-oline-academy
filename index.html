@@ -391,6 +391,7 @@ footer img { height:42px; }
 .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
 @keyframes up { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
 @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes pricingGlow { 0%,100%{background:radial-gradient(ellipse at center,rgba(184,28,28,0.40) 0%,rgba(20,20,20,0) 50%),var(--bgdk)} 50%{background:radial-gradient(ellipse at center,rgba(184,28,28,0.20) 0%,rgba(20,20,20,0) 50%),var(--bgdk)} }
 @keyframes pulseGlow { 0%,100%{text-shadow:0 0 8px rgba(0,0,0,0.2)} 50%{text-shadow:0 0 20px rgba(184,28,28,0.6),0 0 40px rgba(184,28,28,0.3)} }
 
 /* RESPONSIVE */
@@ -652,7 +653,7 @@ footer img { height:42px; }
 </section>
 
 <!-- PRICING -->
-<section id="pricing" class="sec bgdk" style="background:radial-gradient(ellipse at center,rgba(184,28,28,0.15) 0%,rgba(20,20,20,0) 70%),var(--bgdk);">
+<section id="pricing" class="sec bgdk" style="background:radial-gradient(ellipse at center,rgba(184,28,28,0.40) 0%,rgba(20,20,20,0) 50%),var(--bgdk);animation:pricingGlow 3s ease-in-out infinite;">
   <div class="pr-intro">
     <div class="lbl rv" style="justify-content:center;">Training Options</div>
     <h2 class="rv d1" style="text-align:center;">CHOOSE YOUR<br>TRAINING PLAN</h2>
