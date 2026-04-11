@@ -250,19 +250,17 @@ h2 { font-family:"Bebas Neue",sans-serif; font-size:clamp(2.8rem,5.5vw,5rem); li
 
 /* GALLERY */
 #gallery { background:var(--bgdk); }
-.gallery-grid { display:grid; grid-template-columns:repeat(12,1fr); grid-template-rows:240px 240px; gap:4px; margin-top:3rem; }
-/*  GALLERY PHOTOS — replace src on each img below with your photos */
-.g1 { grid-column:span 7; grid-row:span 2; overflow:hidden; position:relative; }
-.g2 { grid-column:span 5; overflow:hidden; position:relative; }
-.g3 { grid-column:span 3; overflow:hidden; position:relative; }
-.g4 { grid-column:span 2; overflow:hidden; position:relative; }
-.gallery-grid > div img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; display:block; }
-.gallery-grid > div:hover img { transform:scale(1.05); }
-.g-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,0.5),transparent); opacity:0; transition:opacity 0.3s; display:flex; align-items:flex-end; padding:1.2rem; }
-.gallery-grid > div:hover .g-overlay { opacity:1; }
-.g-overlay span { font-family:"Barlow Condensed",sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--yellow); }
-.upload-note { margin-top:1.5rem; text-align:center; padding:1rem; background:rgba(184,28,28,0.08); border:1px dashed rgba(184,28,28,0.3); }
-.upload-note p { font-size:0.82rem; color:var(--gray); }
+.gcr { position:relative; max-width:900px; margin:3rem auto 0; overflow:hidden; }
+.gcr-track { display:flex; transition:transform 0.6s ease; }
+.gcr-slide { min-width:100%; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:250px 250px; gap:6px; }
+.gcr-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.gcr-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:5; width:44px; height:44px; background:rgba(0,0,0,0.7); border:2px solid var(--yellow); color:var(--yellow); font-size:1.4rem; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s; }
+.gcr-arrow:hover { background:var(--red); }
+.gcr-arrow.left { left:10px; }
+.gcr-arrow.right { right:10px; }
+.gcr-dots { display:flex; justify-content:center; gap:0.5rem; margin-top:1.2rem; }
+.gcr-dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.15); cursor:pointer; transition:background 0.3s; }
+.gcr-dot.active { background:var(--yellow); }
 .upload-note strong { color:var(--yellow); }
 
 /* VIDEO */
@@ -408,8 +406,8 @@ footer img { height:42px; }
   .wg{grid-template-columns:1fr;gap:3rem;} .bg-grid{grid-template-columns:1fr;gap:3rem;}
   .fr{grid-template-columns:1fr;} footer{flex-direction:column;text-align:center;padding:2rem 1.4rem;}
   .ph{flex-direction:column;align-items:flex-start;gap:1rem;}
-  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
-  .g1,.g2,.g3,.g4{grid-column:span 1;grid-row:span 1;height:200px;}
+  .gcr-slide{grid-template-rows:180px 180px;}
+  .gcr-arrow{width:36px;height:36px;font-size:1.1rem;}
   .vid-side{grid-template-columns:1fr;}
 }
 @media(max-width:540px){
@@ -621,18 +619,62 @@ footer img { height:42px; }
   <div class="lbl rv">Training in Action</div>
   <h2 class="rv d1">PHOTO<br>GALLERY</h2>
 
-  <div class="gallery-grid rv d2">
-    <!--  GALLERY PHOTO 1 (large left) — swap src with your training photo -->
-    <div class="g1"><img src="images/academy/coach-sapp-sr/gallery-1.jpg" alt="Football training" loading="lazy"><div class="g-overlay"><span>Training Sessions</span></div></div>
-    <!--  GALLERY PHOTO 2 -->
-    <div class="g2"><img src="images/academy/coach-sapp-sr/IMG_8216.JPEG" alt="Coach Sapp training session" loading="lazy"><div class="g-overlay"><span>Strength & Conditioning</span></div></div>
-    <!--  GALLERY PHOTO 3 -->
-    <div class="g3"><img src="images/academy/athletes/IMG_9363.JPEG" alt="O-Line athlete training" loading="lazy"><div class="g-overlay"><span>Athlete Development</span></div></div>
-    <!--  GALLERY PHOTO 4 -->
-    <div class="g4"><img src="images/academy/athletes/FullSizeRender.JPG" alt="Football drills at Sapp O-Line Academy" loading="lazy"><div class="g-overlay"><span>Drills</span></div></div>
+  <div class="gcr rv d2" id="galleryCarousel">
+    <div class="gcr-track" id="gcrTrack">
+      <!-- Slide 1 -->
+      <div class="gcr-slide">
+        <img src="images/academy/athletes/IMG_9363.JPEG" alt="Athlete training" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/75CF90CD-327E-4546-BE01-E8B7B5E8E46C.JPG" alt="Coach Sapp coaching" loading="lazy">
+        <img src="images/academy/coach-tj/IMG_3080.JPEG" alt="Coach TJ training" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/coach-sapp-about.jpg" alt="Coach Sapp" loading="lazy">
+      </div>
+      <!-- Slide 2 -->
+      <div class="gcr-slide">
+        <img src="images/academy/athletes/IMG_7017.JPEG" alt="Athlete drills" loading="lazy" style="object-position:center top;">
+        <img src="images/academy/coach-sapp-sr/9434E07A-0772-4929-9263-6772A60CEBD3.JPG" alt="Coach Sapp training" loading="lazy">
+        <img src="images/academy/coach-tj/IMG_7019 2.JPEG" alt="Coach TJ session" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/84636B52-200B-4C16-BD93-6882802906C7.JPEG" alt="Academy session" loading="lazy">
+      </div>
+      <!-- Slide 3 -->
+      <div class="gcr-slide">
+        <img src="images/academy/athletes/49F64FE1-66F8-4695-BDEA-09FBF6A6BE9A.JPEG" alt="Athlete development" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/A7403795.JPEG" alt="Coach Sapp" loading="lazy">
+        <img src="images/academy/coach-tj/IMG_7124.JPEG" alt="Coach TJ" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_0085.JPG" alt="Training session" loading="lazy">
+      </div>
+      <!-- Slide 4 -->
+      <div class="gcr-slide">
+        <img src="images/academy/athletes/67D40E5C-4847-40F7-ACB1-031915F15E78.JPG" alt="Football training" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_0980.JPEG" alt="Coaching drill" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_1522.JPEG" alt="Line technique" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_1523.JPEG" alt="Academy practice" loading="lazy">
+      </div>
+      <!-- Slide 5 -->
+      <div class="gcr-slide">
+        <img src="images/academy/athletes/FullSizeRender.JPG" alt="Athlete at academy" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_1524.JPEG" alt="Training drill" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_1525.JPEG" alt="Coaching session" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_6981.JPEG" alt="Academy training" loading="lazy">
+      </div>
+      <!-- Slide 6 -->
+      <div class="gcr-slide">
+        <img src="images/academy/athletes/IMG_2214.JPEG" alt="Athlete workout" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_7334.JPEG" alt="Coach Sapp drill" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_7336.JPEG" alt="Line training" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/gallery-1.jpg" alt="Gallery training" loading="lazy">
+      </div>
+      <!-- Slide 7 -->
+      <div class="gcr-slide">
+        <img src="images/academy/athletes/IMG_5998.JPEG" alt="Academy athlete" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_8216.JPEG" alt="Strength training" loading="lazy">
+        <img src="images/academy/coach-sapp-sr/IMG_8217.JPEG" alt="Conditioning" loading="lazy">
+        <img src="images/academy/coach-tj/IMG_3080.JPEG" alt="Coach TJ coaching" loading="lazy">
+      </div>
+    </div>
+    <div class="gcr-arrow left" onclick="gcrMove(-1)">&#10094;</div>
+    <div class="gcr-arrow right" onclick="gcrMove(1)">&#10095;</div>
+    <div class="gcr-dots" id="gcrDots"></div>
   </div>
-
-  
 </section>
 
 <!-- VIDEO -->
@@ -1598,6 +1640,34 @@ document.querySelector(".fsub").addEventListener("click", function(){
     cur = (cur + 1) % slides.length;
     slides[cur].classList.add('active');
   }, 4000);
+})();
+
+// Gallery collage carousel
+(function(){
+  var track = document.getElementById('gcrTrack');
+  var dotsWrap = document.getElementById('gcrDots');
+  if(!track || !dotsWrap) return;
+  var slides = track.querySelectorAll('.gcr-slide');
+  var total = slides.length;
+  var idx = 0;
+  var timer;
+  for(var i=0;i<total;i++){
+    var d = document.createElement('div');
+    d.className = 'gcr-dot' + (i===0?' active':'');
+    d.dataset.i = i;
+    d.onclick = function(){ gcrGo(+this.dataset.i); };
+    dotsWrap.appendChild(d);
+  }
+  function gcrGo(n){
+    idx = ((n % total) + total) % total;
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    var dots = dotsWrap.querySelectorAll('.gcr-dot');
+    for(var j=0;j<dots.length;j++) dots[j].classList.toggle('active', j===idx);
+    clearInterval(timer);
+    timer = setInterval(function(){ gcrGo(idx+1); }, 5000);
+  }
+  window.gcrMove = function(dir){ gcrGo(idx + dir); };
+  timer = setInterval(function(){ gcrGo(idx+1); }, 5000);
 })();
 
 </script>
