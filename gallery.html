@@ -26,8 +26,8 @@ body { background:var(--bg); color:var(--wht); font-family:'Barlow',sans-serif; 
 a { color:inherit; }
 
 /* NAV */
-nav { position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0.15rem 4rem; background:rgba(14,14,14,0.94); backdrop-filter:blur(14px); border-bottom:2px solid var(--red); width:100%; }
-.nl img { height:90px; }
+nav { position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0.15rem 4rem; background:rgba(14,14,14,0.94); backdrop-filter:blur(14px); border-bottom:2px solid var(--red); width:100%; overflow:visible; }
+.nl img { height:120px; }
 ul.nm { display:flex; gap:2.8rem; list-style:none; align-items:center; }
 ul.nm a { color:var(--gray); text-decoration:none; font-size:0.77rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; transition:color 0.2s; }
 ul.nm a:hover { color:var(--wht); }
@@ -97,10 +97,11 @@ footer img { height:42px; }
 <nav>
   <a href="index.html" class="nl"><img src="images/logo.png" alt="Sapp O-Line Academy" class="logo-img"></a>
   <ul class="nm">
-    <li><a href="gallery.html" style="color:var(--wht)!important;">Gallery</a></li>
     <li><a href="index.html#about">About Us</a></li>
     <li><a href="index.html#pricing">Pricing</a></li>
     <li><a href="index.html#register" style="color:var(--yellow)!important;">Registration</a></li>
+    <li><a href="index.html#calendar">Calendar</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
     <li><a href="index.html#coaches-corner">Coaches Corner</a></li>
     <li><a href="index.html#register">Contact</a></li>
   </ul>
