@@ -61,8 +61,14 @@ ul.nm a:hover { color:var(--wht); }
 .bf-location .loc-icon { color:var(--red); font-size:1.2rem; flex-shrink:0; }
 .bf-location .loc-text { font-size:0.9rem; color:var(--gray); line-height:1.5; }
 .bf-location .loc-text strong { color:var(--wht); display:block; font-size:0.95rem; }
+.bf-waiver { display:flex; gap:0.8rem; align-items:flex-start; margin-top:1.5rem; padding:1.2rem; background:rgba(245,184,0,0.05); border:1px solid rgba(245,184,0,0.15); cursor:pointer; }
+.bf-waiver input[type="checkbox"] { flex-shrink:0; width:20px; height:20px; accent-color:var(--red); margin-top:2px; cursor:pointer; }
+.bf-waiver span { font-size:0.88rem; color:var(--gray); line-height:1.6; }
+.bf-waiver a { color:var(--yellow); text-decoration:underline; font-weight:700; }
+.bf-waiver a:hover { color:var(--wht); }
 .bf-submit { width:100%; margin-top:1.8rem; padding:1rem; background:var(--red); color:var(--wht); border:none; font-family:"Barlow Condensed",sans-serif; font-size:1.1rem; font-weight:900; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:background 0.2s; }
-.bf-submit:hover { background:var(--red-b); }
+.bf-submit:hover:not(:disabled) { background:var(--red-b); }
+.bf-submit:disabled { background:#333; cursor:not-allowed; opacity:0.5; }
 .bf-note { text-align:center; margin-top:1.2rem; font-size:0.8rem; color:var(--gray); line-height:1.6; }
 .bf-success { display:none; text-align:center; padding:2rem; background:rgba(26,122,58,0.12); border:1px solid rgba(46,204,113,0.3); margin-top:1.5rem; }
 .bf-success p { font-family:"Barlow Condensed",sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:0.1em; color:#2ecc71; }
@@ -164,13 +170,15 @@ footer img { height:42px; }
     </div>
 
     <div class="bf-group">
-      <label>Session Location</label>
-      <div class="bf-location">
+      <label for="bf-location">Session Location</label>
+      <select id="bf-location" name="location" onchange="updateLocation()">
+        <option value="">Select a location</option>
+        <option value="sapps">Sapp's O-Line Academy — Orlando, FL</option>
+        <option value="first-academy">First Academy — Bruton Blvd, Orlando, FL</option>
+      </select>
+      <div class="bf-location" id="bf-loc-display" style="margin-top:0.6rem;display:none;">
         <div class="loc-icon">&#9679;</div>
-        <div class="loc-text">
-          <strong>Sapp's O-Line Academy</strong>
-          Orlando, FL — Exact address provided upon booking confirmation
-        </div>
+        <div class="loc-text" id="bf-loc-text"></div>
       </div>
     </div>
 
@@ -190,7 +198,12 @@ footer img { height:42px; }
       <input type="email" id="bf-email" name="email" placeholder="your@email.com">
     </div>
 
-    <button class="bf-submit" type="button" onclick="submitBooking()">Book Now &rarr;</button>
+    <label class="bf-waiver">
+      <input type="checkbox" id="bf-waiver-chk" onchange="document.getElementById('bf-btn').disabled=!this.checked">
+      <span>I have read and agree to the <a href="waiver.html" target="_blank">Athletic Participation Waiver</a></span>
+    </label>
+
+    <button class="bf-submit" id="bf-btn" type="button" onclick="submitBooking()" disabled>Book Now &rarr;</button>
 
     <div class="bf-success" id="bf-success">
       <p>BOOKING REQUEST RECEIVED — COACH SAPP WILL CONFIRM WITHIN 24 HOURS.</p>
@@ -212,6 +225,20 @@ footer img { height:42px; }
 <div class="built-by">Built & Designed by <a href="#" class="built-link">The Phoenix Blueprint</a></div>
 
 <script>
+function updateLocation(){
+  var sel = document.getElementById('bf-location');
+  var display = document.getElementById('bf-loc-display');
+  var text = document.getElementById('bf-loc-text');
+  if(sel.value === 'sapps'){
+    text.innerHTML = '<strong>Sapp\'s O-Line Academy</strong>Orlando, FL — Exact address provided upon booking confirmation';
+    display.style.display = 'flex';
+  } else if(sel.value === 'first-academy'){
+    text.innerHTML = '<strong>First Academy</strong>Bruton Blvd, Orlando, FL';
+    display.style.display = 'flex';
+  } else {
+    display.style.display = 'none';
+  }
+}
 function submitBooking(){
   var session = document.getElementById('bf-session').value;
   var date = document.getElementById('bf-date').value;
