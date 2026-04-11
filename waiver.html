@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Athletic Participation Waiver | Sapp's O-Line Academy</title>
+<meta name="description" content="Athletic participation waiver and liability release for Sapp's O-Line Academy training sessions, camps, and events.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red:       #B81C1C;
+  --red-b:     #D42222;
+  --yellow:    #F5B800;
+  --bg:        #141414;
+  --bg2:       #1C1C1C;
+  --bg3:       #242424;
+  --bdr:       rgba(255,255,255,0.09);
+  --gray:      #999;
+  --wht:       #F4F0E8;
+}
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--wht); font-family:'Barlow',sans-serif; }
+a { color:inherit; }
+
+/* NAV */
+nav { position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0.15rem 4rem; background:rgba(14,14,14,0.94); backdrop-filter:blur(14px); border-bottom:2px solid var(--red); width:100%; }
+.nl img { height:90px; }
+ul.nm { display:flex; gap:2.8rem; list-style:none; align-items:center; }
+ul.nm a { color:var(--gray); text-decoration:none; font-size:0.77rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; transition:color 0.2s; }
+ul.nm a:hover { color:var(--wht); }
+.nav-cta-btn { background:var(--red); color:var(--wht); padding:0.6rem 1.6rem; font-family:"Barlow Condensed",sans-serif; font-size:0.95rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); transition:background 0.2s; white-space:nowrap; }
+.nav-cta-btn:hover { background:var(--red-b); }
+
+/* HERO */
+.page-hero { padding:10rem 4rem 3rem; text-align:center; border-bottom:4px solid var(--red); }
+.page-hero .lbl { display:flex; align-items:center; gap:12px; font-family:"Barlow Condensed",sans-serif; font-size:0.72rem; font-weight:900; letter-spacing:0.4em; text-transform:uppercase; color:var(--red-b); margin-bottom:0.7rem; justify-content:center; }
+.page-hero h1 { font-family:"Bebas Neue",sans-serif; font-size:clamp(2.8rem,5.5vw,5rem); line-height:0.92; color:var(--wht); margin-bottom:1rem; }
+.page-hero p { font-size:1rem; color:var(--gray); max-width:600px; margin:0 auto; line-height:1.7; }
+
+/* WAIVER */
+.waiver-wrap { max-width:780px; margin:3rem auto 4rem; padding:0 2rem; }
+.waiver-card { background:var(--bg2); border:1px solid var(--bdr); border-top:3px solid var(--red); padding:2.5rem; }
+.w-section { margin-bottom:2.5rem; }
+.w-section:last-child { margin-bottom:0; }
+.w-section-num { font-family:"Barlow Condensed",sans-serif; font-size:0.7rem; font-weight:900; letter-spacing:0.3em; text-transform:uppercase; color:var(--red-b); margin-bottom:0.3rem; }
+.w-section-title { font-family:"Bebas Neue",sans-serif; font-size:1.6rem; letter-spacing:0.05em; color:var(--wht); margin-bottom:1.2rem; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.8rem; }
+.w-legal { font-size:0.88rem; color:var(--gray); line-height:1.8; margin-bottom:1rem; }
+.w-legal strong { color:var(--wht); }
+.w-list { list-style:none; margin:1rem 0; }
+.w-list li { display:flex; gap:0.8rem; align-items:flex-start; font-size:0.88rem; color:var(--gray); line-height:1.6; margin-bottom:0.6rem; }
+.w-list li::before { content:""; flex-shrink:0; width:6px; height:6px; background:var(--red); margin-top:0.5rem; }
+
+/* FORM FIELDS */
+.wf-group { margin-bottom:1.2rem; }
+.wf-group label { display:block; font-family:"Barlow Condensed",sans-serif; font-size:0.78rem; font-weight:900; letter-spacing:0.2em; text-transform:uppercase; color:var(--yellow); margin-bottom:0.4rem; }
+.wf-group input,
+.wf-group textarea { width:100%; padding:0.75rem 1rem; background:var(--bg3); border:1px solid var(--bdr); color:var(--wht); font-family:'Barlow',sans-serif; font-size:0.92rem; outline:none; transition:border-color 0.2s; }
+.wf-group input:focus,
+.wf-group textarea:focus { border-color:var(--yellow); }
+.wf-group textarea { min-height:80px; resize:vertical; }
+.wf-group input[type="date"] { color-scheme:dark; cursor:pointer; }
+.wf-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.wf-row-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; }
+.wf-minor { display:none; padding:1.2rem; background:rgba(245,184,0,0.05); border:1px solid rgba(245,184,0,0.15); margin-bottom:1.2rem; }
+.wf-minor.visible { display:block; }
+
+/* CHECKBOX */
+.wf-check { display:flex; gap:0.8rem; align-items:flex-start; margin-bottom:1rem; cursor:pointer; }
+.wf-check input[type="checkbox"] { flex-shrink:0; width:20px; height:20px; accent-color:var(--red); margin-top:2px; cursor:pointer; }
+.wf-check span { font-size:0.88rem; color:var(--gray); line-height:1.6; }
+
+/* SIGNATURE */
+.wf-sig { padding:1rem; background:var(--bg3); border:1px solid var(--bdr); text-align:center; }
+.wf-sig input { background:transparent; border:none; border-bottom:2px solid var(--yellow); text-align:center; font-size:1.3rem; font-family:Georgia,serif; font-style:italic; color:var(--wht); width:100%; max-width:400px; padding:0.5rem; outline:none; }
+.wf-sig-label { font-size:0.7rem; color:var(--gray); letter-spacing:0.15em; text-transform:uppercase; margin-top:0.5rem; }
+
+/* SUBMIT */
+.wf-submit { width:100%; margin-top:2rem; padding:1.1rem; background:var(--red); color:var(--wht); border:none; font-family:"Barlow Condensed",sans-serif; font-size:1.1rem; font-weight:900; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:background 0.2s; }
+.wf-submit:hover { background:var(--red-b); }
+.wf-success { display:none; text-align:center; padding:2rem; background:rgba(26,122,58,0.12); border:1px solid rgba(46,204,113,0.3); margin-top:1.5rem; }
+.wf-success p { font-family:"Barlow Condensed",sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:0.1em; color:#2ecc71; }
+.wf-success .sub { font-size:0.85rem; color:var(--gray); margin-top:0.5rem; font-family:'Barlow',sans-serif; font-weight:400; letter-spacing:0; }
+
+/* FOOTER */
+footer { background:#0D0D0D; border-top:1px solid rgba(184,28,28,0.25); padding:1.2rem 4rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+footer img { height:42px; }
+.fc { font-size:0.72rem; color:var(--gray); }
+.socs { display:flex; gap:0.8rem; }
+.soc { width:34px; height:34px; background:var(--bg2); border:1px solid var(--bdr); display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--gray); font-size:0.8rem; font-weight:700; transition:border-color 0.2s,color 0.2s; }
+.soc:hover { border-color:var(--yellow); color:var(--yellow); }
+.built-by { background:#0A0A0A; text-align:center; padding:0.7rem; font-size:0.72rem; color:rgba(255,255,255,0.25); letter-spacing:0.08em; }
+.built-link { color:rgba(245,184,0,0.5); text-decoration:none; font-weight:700; transition:color 0.2s; }
+.built-link:hover { color:var(--yellow); }
+
+@media(max-width:960px) {
+  nav { padding:0.4rem 1rem; flex-wrap:wrap; gap:0.3rem; }
+  ul.nm { gap:1rem; flex-wrap:wrap; justify-content:center; }
+  ul.nm a { font-size:0.6rem; letter-spacing:0.06em; }
+  .nav-cta-btn { padding:0.4rem 0.8rem; font-size:0.6rem; letter-spacing:0.06em; }
+  .nl img { height:55px; }
+  .page-hero { padding:8rem 1.5rem 2rem; }
+  .waiver-wrap { padding:0 1rem; }
+  .waiver-card { padding:1.5rem; }
+  .wf-row, .wf-row-3 { grid-template-columns:1fr; }
+  footer { padding:1rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nl"><img src="images/logo.png" alt="Sapp O-Line Academy" class="logo-img"></a>
+  <ul class="nm">
+    <li><a href="index.html#about">About Us</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="index.html#register" style="color:var(--yellow)!important;">Registration</a></li>
+    <li><a href="index.html#calendar">Calendar</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="index.html#coaches-corner">Coaches Corner</a></li>
+    <li><a href="index.html#register">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.6rem;">
+    <a href="https://facebook.com/sappsolineacademy" target="_blank" style="color:var(--gray);transition:color 0.2s;display:flex;align-items:center;" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://instagram.com/sappsolineacademy" target="_blank" style="color:var(--gray);transition:color 0.2s;display:flex;align-items:center;" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="booking.html" class="nav-cta-btn">Book Now</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="lbl">Required Before Training</div>
+  <h1>ATHLETIC PARTICIPATION WAIVER</h1>
+  <p>All participants must complete this waiver prior to their first training session. If the participant is under 18, a parent or legal guardian must complete and sign this form.</p>
+</div>
+
+<!-- WAIVER FORM -->
+<div class="waiver-wrap">
+  <div class="waiver-card">
+
+    <!-- SECTION 1: PARTICIPANT INFO -->
+    <div class="w-section">
+      <div class="w-section-num">Section 1</div>
+      <div class="w-section-title">PARTICIPANT INFORMATION</div>
+      <div class="wf-row">
+        <div class="wf-group">
+          <label for="w-fname">Participant First Name *</label>
+          <input type="text" id="w-fname" placeholder="First name" required>
+        </div>
+        <div class="wf-group">
+          <label for="w-lname">Participant Last Name *</label>
+          <input type="text" id="w-lname" placeholder="Last name" required>
+        </div>
+      </div>
+      <div class="wf-row-3">
+        <div class="wf-group">
+          <label for="w-dob">Date of Birth *</label>
+          <input type="date" id="w-dob" required onchange="checkMinor()">
+        </div>
+        <div class="wf-group">
+          <label for="w-age">Age *</label>
+          <input type="number" id="w-age" placeholder="Age" min="5" max="99" required onchange="checkMinorByAge()">
+        </div>
+        <div class="wf-group">
+          <label for="w-phone">Phone Number *</label>
+          <input type="tel" id="w-phone" placeholder="(000) 000-0000" required>
+        </div>
+      </div>
+      <div class="wf-group">
+        <label for="w-email">Email</label>
+        <input type="email" id="w-email" placeholder="your@email.com">
+      </div>
+
+      <!-- MINOR FIELDS -->
+      <div class="wf-minor" id="minorFields">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:1rem;">Parent / Guardian Information (Required for Minors)</div>
+        <div class="wf-row">
+          <div class="wf-group">
+            <label for="w-guardian">Parent / Guardian Full Name *</label>
+            <input type="text" id="w-guardian" placeholder="Full name">
+          </div>
+          <div class="wf-group">
+            <label for="w-guardian-phone">Parent / Guardian Phone *</label>
+            <input type="tel" id="w-guardian-phone" placeholder="(000) 000-0000">
+          </div>
+        </div>
+        <div class="wf-group">
+          <label for="w-guardian-email">Parent / Guardian Email</label>
+          <input type="email" id="w-guardian-email" placeholder="parent@email.com">
+        </div>
+      </div>
+
+      <div class="wf-row">
+        <div class="wf-group">
+          <label for="w-emergency">Emergency Contact Name *</label>
+          <input type="text" id="w-emergency" placeholder="Full name" required>
+        </div>
+        <div class="wf-group">
+          <label for="w-emergency-phone">Emergency Contact Phone *</label>
+          <input type="tel" id="w-emergency-phone" placeholder="(000) 000-0000" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: LIABILITY WAIVER -->
+    <div class="w-section">
+      <div class="w-section-num">Section 2</div>
+      <div class="w-section-title">ASSUMPTION OF RISK & LIABILITY WAIVER</div>
+      <p class="w-legal">I acknowledge that participation in football training, strength and conditioning, and related athletic activities conducted by <strong>SAPP'S O-Line Academy</strong> involves inherent risks including but not limited to: physical contact, muscle strains, sprains, fractures, concussions, heat-related illness, cardiac events, and other bodily injury or harm. I understand that these risks exist regardless of the care and precautions taken by coaching staff.</p>
+      <p class="w-legal">I voluntarily assume all risks associated with participation in any and all programs, training sessions, camps, clinics, and events operated by SAPP'S O-Line Academy.</p>
+      <p class="w-legal">I hereby <strong>release, waive, and forever discharge</strong> SAPP'S O-Line Academy, its owner <strong>Tyrone Sapp Sr.</strong>, coach <strong>Tyrone Sapp Jr. (Coach TJ)</strong>, all coaching staff, assistants, volunteers, agents, and affiliated parties from any and all liability, claims, demands, actions, or causes of action arising from injury, illness, death, or property damage sustained during or as a result of participation — whether caused by negligence, gross negligence, or otherwise.</p>
+      <p class="w-legal">This waiver and release applies to <strong>all current and future participation</strong> in SAPP'S O-Line Academy programs unless revoked in writing by the undersigned.</p>
+      <label class="wf-check"><input type="checkbox" id="chk-liability" required><span>I have read, understand, and agree to the Assumption of Risk and Liability Waiver above.</span></label>
+    </div>
+
+    <!-- SECTION 3: MEDICAL RELEASE -->
+    <div class="w-section">
+      <div class="w-section-num">Section 3</div>
+      <div class="w-section-title">MEDICAL AUTHORIZATION & RELEASE</div>
+      <p class="w-legal">In the event of injury, illness, or medical emergency during any SAPP'S O-Line Academy training session, camp, clinic, or event, I authorize <strong>Coach Tyrone Sapp Sr., Coach Tyrone Sapp Jr., and all coaching staff</strong> to seek and obtain emergency medical treatment, including but not limited to first aid, CPR, ambulance transport, and hospital care, on behalf of the participant named above.</p>
+      <p class="w-legal">I agree to bear <strong>all costs</strong> associated with any emergency medical treatment provided to the participant. I understand that SAPP'S O-Line Academy does not provide medical insurance coverage for participants.</p>
+      <p class="w-legal">I confirm that the participant is in adequate physical condition to participate in athletic training activities and has no known medical conditions that would prevent safe participation — <strong>or</strong> has disclosed all relevant medical conditions, allergies, and medications below:</p>
+      <div class="wf-group">
+        <label for="w-medical">Medical Conditions, Allergies, or Medications (if any)</label>
+        <textarea id="w-medical" placeholder="List any medical conditions, allergies, or current medications. Write 'None' if not applicable."></textarea>
+      </div>
+      <label class="wf-check"><input type="checkbox" id="chk-medical" required><span>I authorize emergency medical treatment and confirm the accuracy of the medical information provided.</span></label>
+    </div>
+
+    <!-- SECTION 4: PHOTO/VIDEO RELEASE -->
+    <div class="w-section">
+      <div class="w-section-num">Section 4</div>
+      <div class="w-section-title">PHOTO & VIDEO RELEASE</div>
+      <p class="w-legal">I grant <strong>SAPP'S O-Line Academy</strong>, its owners, coaches, representatives, and assigns the irrevocable right and permission to photograph, video record, and otherwise capture the participant's name, image, likeness, and voice during any training session, camp, clinic, or event.</p>
+      <p class="w-legal">I authorize the use of such materials in any and all media — including but not limited to websites, social media platforms (Instagram, Facebook, TikTok, YouTube), print materials, promotional videos, advertisements, and press releases — for the purpose of marketing, promotion, and documentation of SAPP'S O-Line Academy, <strong>without compensation, royalty, or further consent required.</strong></p>
+      <p class="w-legal">This release is perpetual and applies worldwide. I waive any right to inspect or approve the finished materials.</p>
+      <label class="wf-check"><input type="checkbox" id="chk-photo" required><span>I agree to the Photo & Video Release and grant permission for use of the participant's image and likeness.</span></label>
+    </div>
+
+    <!-- SECTION 5: CODE OF CONDUCT -->
+    <div class="w-section">
+      <div class="w-section-num">Section 5</div>
+      <div class="w-section-title">CODE OF CONDUCT</div>
+      <p class="w-legal">By signing this waiver, the participant agrees to abide by the following Code of Conduct at all times while participating in SAPP'S O-Line Academy programs:</p>
+      <ul class="w-list">
+        <li>Show respect to all coaches, staff, and fellow athletes at all times</li>
+        <li>Follow all instructions and safety guidelines provided by coaching staff without exception</li>
+        <li>Refrain from any form of bullying, harassment, fighting, or unsportsmanlike behavior</li>
+        <li>Arrive on time and fully prepared for all scheduled training sessions</li>
+        <li>Report any injury, pain, or medical concern to coaching staff immediately</li>
+        <li>Maintain a positive attitude and demonstrate commitment to personal development</li>
+        <li>Treat all equipment and facilities with care and respect</li>
+        <li>Refrain from the use of drugs, alcohol, or any prohibited substances before or during sessions</li>
+      </ul>
+      <p class="w-legal"><strong>Violation of this Code of Conduct may result in immediate removal from the program without refund.</strong> SAPP'S O-Line Academy reserves the sole right to determine whether a violation has occurred.</p>
+      <label class="wf-check"><input type="checkbox" id="chk-conduct" required><span>I have read and the participant agrees to abide by the Code of Conduct.</span></label>
+    </div>
+
+    <!-- SECTION 6: SIGNATURE -->
+    <div class="w-section">
+      <div class="w-section-num">Section 6</div>
+      <div class="w-section-title">SIGNATURE & AGREEMENT</div>
+      <p class="w-legal">By typing my name below, I acknowledge that this constitutes a <strong>legally binding digital signature</strong>. I confirm that I have read this entire waiver, understand its contents, and agree to all terms and conditions stated herein. If signing on behalf of a minor, I confirm that I am the parent or legal guardian of the participant and have the authority to execute this waiver.</p>
+
+      <label class="wf-check"><input type="checkbox" id="chk-agree" required><span><strong>I have read, understand, and voluntarily agree to all sections of this Athletic Participation Waiver including the Assumption of Risk, Liability Waiver, Medical Authorization, Photo/Video Release, and Code of Conduct.</strong></span></label>
+
+      <div class="wf-row">
+        <div class="wf-group">
+          <label>Digital Signature (Type Full Name) *</label>
+          <div class="wf-sig">
+            <input type="text" id="w-sig" placeholder="Type your full legal name" required>
+            <div class="wf-sig-label">Signature of Participant or Parent/Guardian</div>
+          </div>
+        </div>
+        <div class="wf-group">
+          <label for="w-sig-date">Date *</label>
+          <input type="date" id="w-sig-date" required>
+        </div>
+      </div>
+    </div>
+
+    <button class="wf-submit" type="button" onclick="submitWaiver()">I Agree & Submit &rarr;</button>
+
+    <div class="wf-success" id="wf-success">
+      <p>WAIVER SUBMITTED SUCCESSFULLY</p>
+      <p class="sub">A copy has been recorded. You are cleared to participate in SAPP'S O-Line Academy training sessions.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <img src="images/footer-logo.png" alt="Sapp's OLine Academy" class="logo-img">
+  <p class="fc">&copy; 2026 Sapp's O-Line Academy. All rights reserved.</p>
+  <div class="socs">
+    <a href="https://facebook.com/sappsolineacademy" target="_blank" class="soc" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://instagram.com/sappsolineacademy" target="_blank" class="soc" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+  </div>
+</footer>
+<div class="built-by">Built & Designed by <a href="#" class="built-link">The Phoenix Blueprint</a></div>
+
+<script>
+// Auto-fill today's date
+document.getElementById('w-sig-date').valueAsDate = new Date();
+
+// Show minor fields if age < 18
+function checkMinorByAge(){
+  var age = parseInt(document.getElementById('w-age').value);
+  document.getElementById('minorFields').classList.toggle('visible', age < 18);
+}
+function checkMinor(){
+  var dob = new Date(document.getElementById('w-dob').value);
+  var today = new Date();
+  var age = today.getFullYear() - dob.getFullYear();
+  var m = today.getMonth() - dob.getMonth();
+  if(m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+  if(!isNaN(age) && age > 0){
+    document.getElementById('w-age').value = age;
+    document.getElementById('minorFields').classList.toggle('visible', age < 18);
+  }
+}
+
+function submitWaiver(){
+  var fname = document.getElementById('w-fname').value.trim();
+  var lname = document.getElementById('w-lname').value.trim();
+  var age = document.getElementById('w-age').value;
+  var phone = document.getElementById('w-phone').value.trim();
+  var emergency = document.getElementById('w-emergency').value.trim();
+  var emergPhone = document.getElementById('w-emergency-phone').value.trim();
+  var sig = document.getElementById('w-sig').value.trim();
+  var sigDate = document.getElementById('w-sig-date').value;
+
+  if(!fname || !lname || !age || !phone || !emergency || !emergPhone || !sig || !sigDate){
+    alert('Please complete all required fields marked with *.');
+    return;
+  }
+
+  var chks = ['chk-liability','chk-medical','chk-photo','chk-conduct','chk-agree'];
+  for(var i=0;i<chks.length;i++){
+    if(!document.getElementById(chks[i]).checked){
+      alert('Please check all agreement boxes before submitting.');
+      return;
+    }
+  }
+
+  // Check minor fields
+  if(parseInt(age) < 18){
+    var guardian = document.getElementById('w-guardian').value.trim();
+    var guardianPhone = document.getElementById('w-guardian-phone').value.trim();
+    if(!guardian || !guardianPhone){
+      alert('Parent/Guardian information is required for participants under 18.');
+      return;
+    }
+  }
+
+  var btn = document.querySelector('.wf-submit');
+  btn.textContent = 'Submitting...';
+  btn.style.background = '#333';
+  btn.disabled = true;
+
+  setTimeout(function(){
+    document.getElementById('wf-success').style.display = 'block';
+    btn.textContent = 'Submitted';
+    btn.style.background = 'rgba(26,122,58,0.5)';
+    window.scrollTo({top: document.getElementById('wf-success').offsetTop - 100, behavior:'smooth'});
+  }, 1500);
+}
+</script>
+</body>
+</html>
