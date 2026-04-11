@@ -115,16 +115,24 @@ footer img { height:42px; }
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="lbl">Training in Action</div>
-  <h1>PHOTO GALLERY</h1>
+  <h1>GALLERY</h1>
   <p>Coach Sapp, Coach TJ, and our athletes putting in the work — developing power, mastering technique, and pushing their limits every session.</p>
 </div>
 
 <!-- FILTER TABS -->
 <div class="filter-bar">
-  <button class="filter-btn active" data-filter="all">All Photos</button>
+  <button class="filter-btn active" data-filter="all">All</button>
   <button class="filter-btn" data-filter="coach-sapp">Coach Sapp</button>
   <button class="filter-btn" data-filter="coach-tj">Coach TJ</button>
   <button class="filter-btn" data-filter="athletes">Athletes</button>
+  <button class="filter-btn" data-filter="videos">Videos</button>
+</div>
+
+<!-- VIDEOS COMING SOON -->
+<div id="videos-placeholder" style="display:none;text-align:center;padding:5rem 2rem;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--wht);letter-spacing:0.04em;margin-bottom:0.8rem;">VIDEOS COMING SOON</div>
+  <div style="width:60px;height:3px;background:var(--red);margin:0 auto 1.5rem;"></div>
+  <p style="font-size:1rem;color:var(--gray);max-width:500px;margin:0 auto;line-height:1.7;">Training footage, coaching breakdowns, and athlete highlights are on the way. Check back soon.</p>
 </div>
 
 <!-- MASONRY GALLERY -->
@@ -186,13 +194,22 @@ document.querySelectorAll('.filter-btn').forEach(function(btn){
     document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
     this.classList.add('active');
     var filter = this.dataset.filter;
-    document.querySelectorAll('.masonry-item').forEach(function(item){
-      if(filter === 'all' || item.dataset.cat === filter){
-        item.style.display = '';
-      } else {
-        item.style.display = 'none';
-      }
-    });
+    var masonry = document.getElementById('masonry');
+    var vidPlaceholder = document.getElementById('videos-placeholder');
+    if(filter === 'videos'){
+      masonry.style.display = 'none';
+      vidPlaceholder.style.display = 'block';
+    } else {
+      masonry.style.display = '';
+      vidPlaceholder.style.display = 'none';
+      document.querySelectorAll('.masonry-item').forEach(function(item){
+        if(filter === 'all' || item.dataset.cat === filter){
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
   });
 });
 
