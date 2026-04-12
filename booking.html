@@ -24,7 +24,8 @@
   --bdr:       rgba(255,255,255,0.09);
   --gray:      #999;
   --wht:       #F4F0E8;
-  --blue:      #2980b9;
+  --red-soft:  #d44444;
+  --gold-soft: #e8b93d;
 }
 html { scroll-behavior:smooth; }
 body { background:var(--bg); color:var(--wht); font-family:'Barlow',sans-serif; }
@@ -52,25 +53,27 @@ ul.nm a:hover { color:var(--wht); }
 .cal-nav { display:flex; gap:0.5rem; }
 .cal-btn { width:40px; height:40px; background:var(--bg2); border:1px solid var(--bdr); color:var(--yellow); font-size:1.2rem; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s; }
 .cal-btn:hover { background:var(--red); }
-.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
-.cal-day-header { background:var(--bg3); padding:0.6rem; text-align:center; font-family:"Barlow Condensed",sans-serif; font-size:0.72rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); }
-.cal-cell { background:var(--bg2); min-height:90px; padding:0.5rem; border:1px solid rgba(255,255,255,0.04); position:relative; transition:background 0.2s; }
-.cal-cell.empty { background:var(--bg); opacity:0.3; }
-.cal-cell.today { border-color:var(--yellow); }
-.cal-num { font-size:0.8rem; font-weight:700; color:var(--gray); margin-bottom:0.3rem; }
-.cal-event { font-size:0.6rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:0.2rem 0.4rem; margin-bottom:2px; cursor:pointer; border-radius:2px; line-height:1.3; transition:opacity 0.2s; }
-.cal-event:hover { opacity:0.8; }
-.cal-event.group { background:rgba(184,28,28,0.3); color:#ff6b6b; border-left:3px solid var(--red); }
-.cal-event.tj { background:rgba(245,184,0,0.2); color:var(--yellow); border-left:3px solid var(--yellow); }
-.cal-event.youth { background:rgba(41,128,185,0.25); color:#5dade2; border-left:3px solid var(--blue); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; padding:10px; background:linear-gradient(180deg, rgba(184,28,28,0.04) 0%, rgba(20,20,20,0) 100%); border-radius:12px; }
+.cal-day-header { background:linear-gradient(180deg, var(--bg3) 0%, var(--bg2) 100%); padding:0.7rem; text-align:center; font-family:"Barlow Condensed",sans-serif; font-size:0.72rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); border-radius:6px; }
+.cal-cell { background:linear-gradient(180deg, rgba(36,36,36,0.9) 0%, rgba(28,28,28,0.8) 100%); min-height:90px; padding:0.6rem; border:1px solid rgba(255,255,255,0.03); border-radius:8px; position:relative; transition:all 0.25s ease; }
+.cal-cell:hover { border-color:rgba(212,160,23,0.25); transform:translateY(-1px); box-shadow:0 2px 8px rgba(0,0,0,0.2); }
+.cal-cell.empty { background:transparent; border-color:transparent; opacity:0.15; }
+.cal-cell.today { border-color:var(--yellow); box-shadow:inset 0 0 0 1px rgba(245,184,0,0.3); }
+.cal-num { font-size:0.82rem; font-weight:700; color:var(--gray); margin-bottom:0.4rem; }
+.cal-cell.today .cal-num { color:var(--yellow); }
+.cal-event { font-size:0.6rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:0.25rem 0.5rem; margin-bottom:3px; cursor:pointer; border-radius:4px; line-height:1.3; transition:all 0.2s; }
+.cal-event:hover { filter:brightness(1.2); transform:translateX(2px); }
+.cal-event.group { background:linear-gradient(90deg, rgba(184,28,28,0.45) 0%, rgba(184,28,28,0.25) 100%); color:#ff9999; border-left:3px solid var(--red); }
+.cal-event.tj { background:linear-gradient(90deg, rgba(245,184,0,0.3) 0%, rgba(245,184,0,0.15) 100%); color:var(--yellow); border-left:3px solid var(--yellow); }
+.cal-event.youth { background:linear-gradient(90deg, rgba(212,160,23,0.35) 0%, rgba(212,160,23,0.18) 100%); color:var(--gold-soft); border-left:3px solid var(--gold-soft); }
 
 /* LEGEND */
 .cal-legend { display:flex; gap:2rem; justify-content:center; margin-top:1.5rem; flex-wrap:wrap; }
 .cal-legend-item { display:flex; align-items:center; gap:0.5rem; font-size:0.78rem; color:var(--gray); }
-.cal-legend-dot { width:12px; height:12px; border-radius:2px; }
+.cal-legend-dot { width:12px; height:12px; border-radius:3px; }
 .cal-legend-dot.red { background:var(--red); }
 .cal-legend-dot.gold { background:var(--yellow); }
-.cal-legend-dot.blue { background:var(--blue); }
+.cal-legend-dot.gold-soft { background:var(--gold-soft); }
 
 /* UPCOMING */
 .upcoming { max-width:900px; margin:3rem auto; padding:0 2rem; }
@@ -81,9 +84,10 @@ ul.nm a:hover { color:var(--wht); }
 .up-date span { display:block; font-size:0.65rem; color:var(--yellow); font-family:"Barlow Condensed",sans-serif; letter-spacing:0.1em; }
 .up-details { }
 .up-type { font-family:"Barlow Condensed",sans-serif; font-size:0.85rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; }
-.up-type.group { color:#ff6b6b; }
+.up-type.group { color:var(--red-soft); }
 .up-type.tj { color:var(--yellow); }
-.up-type.youth { color:#5dade2; }
+.up-type.youth { color:var(--gold-soft); }
+.up-type.custom { color:var(--red-soft); }
 .up-loc { font-size:0.75rem; color:var(--gray); margin-top:0.2rem; }
 .up-btn { background:var(--red); color:var(--wht); border:none; padding:0.5rem 1.2rem; font-family:"Barlow Condensed",sans-serif; font-size:0.8rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); transition:background 0.2s; }
 .up-btn:hover { background:var(--red-b); }
@@ -248,7 +252,7 @@ footer img { height:42px; }
   </div>
   <div class="cal-legend">
     <div class="cal-legend-item"><div class="cal-legend-dot gold"></div>Tue 7PM — CFCA</div>
-    <div class="cal-legend-item"><div class="cal-legend-dot blue"></div>Thu 7PM — CFCA</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot gold-soft"></div>Thu 7PM — CFCA</div>
     <div class="cal-legend-item"><div class="cal-legend-dot red"></div>Sat 9AM — Eagle Nest Park</div>
   </div>
 </div>
@@ -411,7 +415,7 @@ function renderCalendar(year, month){
       if(c.date === cellIso){
         var ev = document.createElement('div');
         ev.className = 'cal-event';
-        ev.style.cssText = 'background:rgba(155,89,182,0.3);color:#bb8fce;border-left:3px solid #9b59b6;';
+        ev.style.cssText = 'background:linear-gradient(90deg, rgba(212,160,23,0.4) 0%, rgba(184,28,28,0.25) 100%);color:var(--gold-soft);border-left:3px solid var(--red);';
         ev.textContent = c.type;
         ev.onclick = (function(cs){
           return function(e){
