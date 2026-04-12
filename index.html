@@ -412,8 +412,18 @@ footer img { height:42px; }
   .gcr-arrow{width:36px;height:36px;font-size:1.1rem;}
   .vid-side{grid-template-columns:1fr;}
 }
+@media(max-width:768px){
+  .nl img{height:55px;}
+  .mob-1col{grid-template-columns:1fr !important;gap:1.5rem !important;}
+  .mob-2col{grid-template-columns:1fr 1fr !important;gap:1rem !important;}
+  .mob-stack{flex-direction:column !important;height:auto !important;}
+  .mob-stack > div{height:220px;}
+  .mob-pad{padding:3rem 1.2rem !important;}
+}
 @media(max-width:540px){
   .pg{grid-template-columns:1fr;} .pr-grid{grid-template-columns:1fr;}
+  .mob-2col{grid-template-columns:1fr !important;}
+  .nl img{height:45px;}
 }
 
 
@@ -490,7 +500,7 @@ footer img { height:42px; }
     <div class="lbl rv" style="justify-content:center;">The Team</div>
     <h2 class="rv d1" style="text-align:center;">MEET YOUR<br>COACHES</h2>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;max-width:800px;margin:0 auto;" class="rv d2">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;max-width:800px;margin:0 auto;" class="rv d2 mob-1col">
     <!-- Coach Sapp Sr -->
     <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-top:3px solid var(--red);box-shadow:0 0 60px 25px rgba(201,168,76,0.35);">
       <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg3);">
@@ -793,12 +803,12 @@ footer img { height:42px; }
 </section>
 
 <!-- TESTIMONIALS -->
-<section style="padding:5rem 4rem;background:var(--bg);">
+<section class="sec mob-pad" style="background:var(--bg);">
   <div style="text-align:center;margin-bottom:3rem;">
     <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:900;letter-spacing:0.4em;text-transform:uppercase;color:var(--red-b);margin-bottom:0.7rem;">What Parents & Athletes Say</div>
     <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,4.5vw,4rem);line-height:0.92;color:var(--wht);">TESTIMONIALS</h2>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1100px;margin:0 auto;">
+  <div class="mob-1col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1100px;margin:0 auto;">
     <!-- Review 1 -->
     <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-top:3px solid var(--yellow);padding:2rem;display:flex;flex-direction:column;">
       <div style="color:var(--yellow);font-size:1.1rem;letter-spacing:0.15em;margin-bottom:1rem;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -883,7 +893,7 @@ footer img { height:42px; }
   <div class="lbl rv"><span class="lbl-line"></span>For Coaches<span class="lbl-line"></span></div>
   <h2 class="rv" style="color:var(--yellow);">COACHES <span style="color:var(--wht);">CORNER</span></h2>
   <p class="rv" style="max-width:600px;margin-bottom:3rem;color:var(--gray);font-size:1rem;line-height:1.7;">Join Coach Sapp and Coach TJ inside the Coaches Corner — a members-only space built for coaches who are serious about developing dominant offensive linemen.</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;" class="rv">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;" class="rv mob-1col">
     <div>
       <div style="background:rgba(245,184,0,0.06);border:1px solid rgba(245,184,0,0.2);border-left:4px solid var(--yellow);padding:2rem;margin-bottom:1.5rem;">
         <div style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--yellow);line-height:1;">$8<span style="font-size:1.8rem;">.99</span><span style="font-size:1rem;color:var(--gray);font-family:'Barlow',sans-serif;font-weight:400;">/month</span></div>
@@ -927,7 +937,7 @@ footer img { height:42px; }
   <div class="lbl rv"><span class="lbl-line"></span>Academy Alumni in the Pros<span class="lbl-line"></span></div>
   <h2 class="rv">FEATURED <span style="color:var(--yellow);">PROFESSIONALS</span></h2>
   <p class="rv" style="max-width:600px;margin-bottom:3rem;color:var(--gray);font-size:1rem;line-height:1.7;">Athletes who trained with Sapp's O-Line Academy and went on to play at the highest levels of football.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="rv d1">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="rv d1 mob-1col">
     <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-top:3px solid var(--yellow);padding:2rem;text-align:center;">
       <div style="width:80px;height:80px;background:linear-gradient(135deg,var(--red),#7A0000);border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--yellow);">?</div>
       <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.04em;margin-bottom:0.3rem;">Athlete Name</div>
@@ -955,7 +965,7 @@ footer img { height:42px; }
   <div class="lbl rv"><span class="lbl-line"></span>Our Athletes<span class="lbl-line"></span></div>
   <h2 class="rv">ACADEMY <span style="color:var(--red);">ALUMNI</span></h2>
   <p class="rv" style="max-width:600px;margin-bottom:3rem;color:var(--gray);font-size:1rem;line-height:1.7;">Every athlete who steps into the trenches with Sapp's O-Line Academy becomes part of a brotherhood built on discipline, accountability, and excellence.</p>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;" class="rv d1">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;" class="rv d1 mob-2col">
     <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);padding:1.5rem;border-left:3px solid var(--red);">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.04em;margin-bottom:0.2rem;">Athlete Name</div>
       <div style="font-size:0.7rem;color:var(--yellow);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.3rem;">School / Team</div>
@@ -985,7 +995,7 @@ footer img { height:42px; }
   <div class="lbl rv"><span class="lbl-line"></span>Bring Coach Sapp To You<span class="lbl-line"></span></div>
   <h2 class="rv">HOST <span style="color:var(--red);">COACH SAPP</span></h2>
   <p class="rv" style="max-width:600px;margin-bottom:3rem;color:var(--gray);font-size:1rem;line-height:1.7;">Want to bring Coach Sapp to your facility? Whether you're hosting a clinic, a training camp, or need a guest coach for your program — fill out the form below and we'll be in touch.</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="rv d1">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="rv d1 mob-1col">
     <div>
       <div style="display:flex;flex-direction:column;gap:1.2rem;">
         <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-left:4px solid var(--red);padding:1.5rem;">
@@ -1011,7 +1021,7 @@ footer img { height:42px; }
         <label>Contact Name *</label>
         <input type="text" id="host-contact" placeholder="Your full name" required>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+      <div class="mob-1col" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
         <div class="fg">
           <label>Phone *</label>
           <input type="tel" id="host-phone" placeholder="(555) 555-5555" required>
@@ -1049,7 +1059,7 @@ footer img { height:42px; }
 </section>
 
 <!-- STRATEGIC PHOTOS: Three-Image Row -->
-<div style="display:flex;width:100%;height:400px;background:var(--bg);">
+<div class="mob-stack" style="display:flex;width:100%;height:400px;background:var(--bg);">
   <div style="flex:1;overflow:hidden;"><img src="images/academy/coach-sapp-sr/A7403795.JPEG" alt="Coach Sapp" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>
   <div style="flex:1;overflow:hidden;"><img src="images/academy/athletes/67D40E5C-4847-40F7-ACB1-031915F15E78.JPG" alt="O-Line Academy athlete development" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>
   <div style="flex:1;overflow:hidden;"><img src="images/academy/athletes/IMG_9363.JPEG" alt="Athlete training" style="width:100%;height:100%;object-fit:cover;" loading="lazy"></div>
@@ -1281,7 +1291,7 @@ footer img { height:42px; }
   <div class="lbl rv"><span class="lbl-line"></span>From Coach Sapp<span class="lbl-line"></span></div>
   <h2 class="rv">ACADEMY <span style="color:var(--yellow);">BLOG</span></h2>
   <p class="rv" style="max-width:600px;margin-bottom:3rem;color:var(--gray);font-size:1rem;line-height:1.7;">Training tips, academy updates, and insights straight from Coach Sapp.</p>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="rv d1">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;" class="rv d1 mob-1col">
 
     <!-- POST 1 -->
     <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;">
