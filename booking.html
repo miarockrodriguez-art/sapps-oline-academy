@@ -121,6 +121,26 @@ ul.nm a:hover { color:var(--wht); }
 .admin-panel.open { display:block; }
 .admin-panel h2 { font-family:"Bebas Neue",sans-serif; font-size:1.8rem; letter-spacing:0.04em; margin-bottom:1rem; color:var(--yellow); }
 
+/* Announcement Banner Admin */
+.ann-admin { background:var(--bg2); border:1px solid var(--bdr); border-left:3px solid var(--yellow); padding:1.5rem; margin-bottom:2rem; }
+.ann-admin h3 { font-family:"Barlow Condensed",sans-serif; font-size:0.9rem; font-weight:900; letter-spacing:0.2em; text-transform:uppercase; color:var(--yellow); margin-bottom:1rem; }
+.ann-admin textarea { width:100%; padding:0.7rem; background:var(--bg3); border:1px solid var(--bdr); color:var(--wht); font-family:'Barlow',sans-serif; font-size:0.9rem; outline:none; min-height:60px; resize:vertical; margin-bottom:1rem; }
+.ann-admin textarea:focus { border-color:var(--yellow); }
+.ann-admin-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.ann-toggle-wrap { display:flex; align-items:center; gap:0.6rem; cursor:pointer; }
+.ann-toggle-wrap input[type="checkbox"] { width:40px; height:22px; appearance:none; background:var(--bg3); border:1px solid var(--bdr); border-radius:11px; position:relative; cursor:pointer; transition:background 0.2s; }
+.ann-toggle-wrap input[type="checkbox"]::before { content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; background:var(--gray); border-radius:50%; transition:all 0.2s; }
+.ann-toggle-wrap input[type="checkbox"]:checked { background:var(--yellow); }
+.ann-toggle-wrap input[type="checkbox"]:checked::before { left:20px; background:#000; }
+.ann-toggle-wrap span { font-family:"Barlow Condensed",sans-serif; font-size:0.8rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray); }
+.ann-save { padding:0.7rem 1.5rem; background:var(--red); color:var(--wht); border:none; font-family:"Barlow Condensed",sans-serif; font-size:0.85rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); }
+.ann-save:hover { background:var(--red-b); }
+
+/* Announcement Banner (public-facing) */
+#announcementBanner { display:none; position:fixed; top:0; left:0; right:0; z-index:201; background:var(--yellow); color:#000; text-align:center; padding:0.6rem 1rem; font-family:"Barlow Condensed",sans-serif; font-weight:900; letter-spacing:0.12em; font-size:0.9rem; text-transform:uppercase; box-shadow:0 2px 8px rgba(0,0,0,0.3); }
+body.has-banner nav { top:40px; }
+body.has-banner { padding-top:40px; }
+
 /* Add Session form */
 .add-session-wrap { background:var(--bg2); border:1px solid var(--bdr); border-left:3px solid var(--yellow); margin-bottom:2rem; }
 .add-session-toggle { padding:1rem 1.2rem; cursor:pointer; font-family:"Barlow Condensed",sans-serif; font-size:0.85rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); display:flex; justify-content:space-between; align-items:center; }
@@ -206,6 +226,10 @@ footer img { height:42px; }
 </head>
 <body>
 
+<!-- ANNOUNCEMENT BANNER -->
+<div id="announcementBanner"></div>
+
+
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nl"><img src="images/logo-trimmed.png" alt="Sapp O-Line Academy" class="logo-img"></a>
@@ -268,6 +292,19 @@ footer img { height:42px; }
 <!-- ADMIN PANEL -->
 <div class="admin-panel" id="adminPanel">
   <h2>&#128274; ROSTER & ATTENDANCE</h2>
+
+  <!-- Announcement Banner -->
+  <div class="ann-admin">
+    <h3>&#128226; Announcement Banner</h3>
+    <textarea id="ann-text" placeholder="Type your banner message (e.g., Sessions cancelled due to weather — rescheduling for Sunday 10AM)"></textarea>
+    <div class="ann-admin-row">
+      <label class="ann-toggle-wrap">
+        <input type="checkbox" id="ann-toggle">
+        <span>Show banner on all pages</span>
+      </label>
+      <button class="ann-save" onclick="saveAnnouncement()">Save Banner</button>
+    </div>
+  </div>
 
   <!-- Add Session -->
   <div class="add-session-wrap">
@@ -534,7 +571,39 @@ function promptAdmin(){
 function toggleAdmin(){
   var panel = document.getElementById('adminPanel');
   panel.classList.toggle('open');
-  if(panel.classList.contains('open')) renderSessionCards('all');
+  if(panel.classList.contains('open')){
+    renderSessionCards('all');
+    loadAnnouncementAdmin();
+  }
+}
+
+// Announcement Banner
+function loadAnnouncementAdmin(){
+  var ann = JSON.parse(localStorage.getItem('soa_announcement') || '{"enabled":false,"message":""}');
+  document.getElementById('ann-text').value = ann.message || '';
+  document.getElementById('ann-toggle').checked = !!ann.enabled;
+}
+function saveAnnouncement(){
+  var message = document.getElementById('ann-text').value.trim();
+  var enabled = document.getElementById('ann-toggle').checked;
+  localStorage.setItem('soa_announcement', JSON.stringify({ enabled:enabled, message:message }));
+  showAnnouncementBanner();
+  var btn = document.querySelector('.ann-save');
+  btn.textContent = 'Saved';
+  btn.style.background = 'rgba(46,204,113,0.5)';
+  setTimeout(function(){ btn.textContent = 'Save Banner'; btn.style.background = ''; }, 1500);
+}
+function showAnnouncementBanner(){
+  var ann = JSON.parse(localStorage.getItem('soa_announcement') || '{"enabled":false,"message":""}');
+  var banner = document.getElementById('announcementBanner');
+  if(ann.enabled && ann.message){
+    banner.textContent = ann.message;
+    banner.style.display = 'block';
+    document.body.classList.add('has-banner');
+  } else {
+    banner.style.display = 'none';
+    document.body.classList.remove('has-banner');
+  }
 }
 
 // Build list of all upcoming sessions (recurring next 60 days + custom - cancelled)
@@ -732,6 +801,7 @@ function togglePresent(id, checked){
 }
 
 // Init
+showAnnouncementBanner();
 renderCalendar(curYear, curMonth);
 renderUpcoming();
 </script>

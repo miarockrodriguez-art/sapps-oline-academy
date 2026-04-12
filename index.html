@@ -443,6 +443,22 @@ footer img { height:42px; }
 </head>
 <body>
 
+<!-- ANNOUNCEMENT BANNER -->
+<div id="announcementBanner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:201;background:#F5B800;color:#000;text-align:center;padding:0.6rem 1rem;font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:0.12em;font-size:0.9rem;text-transform:uppercase;box-shadow:0 2px 8px rgba(0,0,0,0.3);"></div>
+<script>
+(function(){
+  var ann = JSON.parse(localStorage.getItem('soa_announcement') || '{"enabled":false,"message":""}');
+  if(ann.enabled && ann.message){
+    var b = document.getElementById('announcementBanner');
+    b.textContent = ann.message;
+    b.style.display = 'block';
+    document.body.classList.add('has-banner');
+  }
+})();
+</script>
+<style>body.has-banner nav { top:40px !important; } body.has-banner { padding-top:40px; }</style>
+
+
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nl"><img src="images/logo-trimmed.png" alt="Sapp O-Line Academy" class="logo-img"></a>
