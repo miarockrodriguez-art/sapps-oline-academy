@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="icon" type="image/png" href="images/logo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Book a Session | Sapp's O-Line Academy</title>
-<meta name="description" content="Book your training session with Coach Sapp or Coach TJ at Sapp's O-Line Academy. Group training, one-on-one sessions, youth prep, and strength & conditioning available.">
+<title>Training Calendar | Sapp's O-Line Academy</title>
+<meta name="description" content="View the training schedule and register for sessions at Sapp's O-Line Academy. Group training, Coach TJ sessions, and Youth Prep available weekly.">
+<meta property="og:title" content="Training Calendar | Sapp's O-Line Academy">
+<meta property="og:description" content="View the training schedule and register for sessions at Sapp's O-Line Academy.">
+<meta property="og:image" content="images/academy/coach-sapp-sr/coach-sapp-about.jpg">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
 <style>
@@ -20,14 +24,15 @@
   --bdr:       rgba(255,255,255,0.09);
   --gray:      #999;
   --wht:       #F4F0E8;
+  --blue:      #2980b9;
 }
 html { scroll-behavior:smooth; }
 body { background:var(--bg); color:var(--wht); font-family:'Barlow',sans-serif; }
 a { color:inherit; }
 
 /* NAV */
-nav { position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0.15rem 4rem; background:rgba(14,14,14,0.94); backdrop-filter:blur(14px); border-bottom:2px solid var(--red); width:100%; }
-.nl img { height:90px; }
+nav { position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0.15rem 4rem; background:rgba(14,14,14,0.94); backdrop-filter:blur(14px); border-bottom:2px solid var(--red); width:100%; overflow:visible; }
+.nl img { height:120px; }
 ul.nm { display:flex; gap:2.8rem; list-style:none; align-items:center; }
 ul.nm a { color:var(--gray); text-decoration:none; font-size:0.77rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; transition:color 0.2s; }
 ul.nm a:hover { color:var(--wht); }
@@ -40,53 +45,85 @@ ul.nm a:hover { color:var(--wht); }
 .page-hero h1 { font-family:"Bebas Neue",sans-serif; font-size:clamp(2.8rem,5.5vw,5rem); line-height:0.92; color:var(--wht); margin-bottom:1rem; }
 .page-hero p { font-size:1rem; color:var(--gray); max-width:600px; margin:0 auto; line-height:1.7; }
 
-/* BOOKING FORM */
-.booking-wrap { max-width:620px; margin:3rem auto 4rem; padding:0 2rem; }
-.booking-card { background:var(--bg2); border:1px solid var(--bdr); border-top:3px solid var(--red); padding:2.5rem; }
-.booking-card .fttl { font-family:"Bebas Neue",sans-serif; font-size:1.8rem; letter-spacing:0.06em; color:var(--wht); margin-bottom:2rem; text-align:center; }
-.bf-group { margin-bottom:1.4rem; }
-.bf-group label { display:block; font-family:"Barlow Condensed",sans-serif; font-size:0.78rem; font-weight:900; letter-spacing:0.2em; text-transform:uppercase; color:var(--yellow); margin-bottom:0.4rem; }
-.bf-group input,
-.bf-group select,
-.bf-group textarea { width:100%; padding:0.75rem 1rem; background:var(--bg3); border:1px solid var(--bdr); color:var(--wht); font-family:'Barlow',sans-serif; font-size:0.92rem; outline:none; transition:border-color 0.2s; }
-.bf-group input:focus,
-.bf-group select:focus,
-.bf-group textarea:focus { border-color:var(--yellow); }
-.bf-group select { cursor:pointer; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F5B800' stroke-width='2' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.5rem; }
-.bf-group select option { background:var(--bg2); color:var(--wht); }
-.bf-group input[type="date"],
-.bf-group input[type="time"] { color-scheme:dark; cursor:pointer; }
-.bf-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-.bf-location { display:flex; align-items:center; gap:0.8rem; padding:0.75rem 1rem; background:var(--bg3); border:1px solid var(--bdr); }
-.bf-location .loc-icon { color:var(--red); font-size:1.2rem; flex-shrink:0; }
-.bf-location .loc-text { font-size:0.9rem; color:var(--gray); line-height:1.5; }
-.bf-location .loc-text strong { color:var(--wht); display:block; font-size:0.95rem; }
-.bf-waiver-wrap { margin-top:1.5rem; border:1px solid rgba(245,184,0,0.15); background:rgba(245,184,0,0.05); }
-.bf-waiver-toggle { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.2rem; cursor:pointer; user-select:none; }
-.bf-waiver-toggle:hover { background:rgba(245,184,0,0.08); }
-.bf-waiver-toggle span { font-family:"Barlow Condensed",sans-serif; font-size:0.82rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); }
-.bf-waiver-arrow { color:var(--yellow); font-size:1.2rem; transition:transform 0.3s; }
-.bf-waiver-wrap.open .bf-waiver-arrow { transform:rotate(180deg); }
-.bf-waiver-body { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
-.bf-waiver-wrap.open .bf-waiver-body { max-height:2000px; }
-.bf-waiver-content { padding:0 1.2rem 1.2rem; font-size:0.82rem; color:var(--gray); line-height:1.8; }
-.bf-waiver-content h4 { font-family:"Bebas Neue",sans-serif; font-size:1.1rem; color:var(--wht); letter-spacing:0.04em; margin:1.2rem 0 0.5rem; }
-.bf-waiver-content h4:first-child { margin-top:0; }
-.bf-waiver-content strong { color:var(--wht); }
-.bf-waiver-content ul { list-style:none; margin:0.5rem 0; }
-.bf-waiver-content ul li { padding-left:1rem; position:relative; margin-bottom:0.3rem; }
-.bf-waiver-content ul li::before { content:""; position:absolute; left:0; top:0.55rem; width:5px; height:5px; background:var(--red); }
-.bf-waiver-link { display:inline-block; margin-top:0.8rem; color:var(--yellow); text-decoration:underline; font-weight:700; font-size:0.8rem; }
-.bf-waiver-link:hover { color:var(--wht); }
-.bf-waiver-check { display:flex; gap:0.8rem; align-items:flex-start; padding:1rem 1.2rem; border-top:1px solid rgba(245,184,0,0.15); cursor:pointer; }
-.bf-waiver-check input[type="checkbox"] { flex-shrink:0; width:20px; height:20px; accent-color:var(--red); margin-top:2px; cursor:pointer; }
-.bf-waiver-check span { font-size:0.88rem; color:var(--gray); line-height:1.6; }
-.bf-submit { width:100%; margin-top:1.8rem; padding:1rem; background:var(--red); color:var(--wht); border:none; font-family:"Barlow Condensed",sans-serif; font-size:1.1rem; font-weight:900; letter-spacing:0.18em; text-transform:uppercase; cursor:pointer; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition:background 0.2s; }
-.bf-submit:hover:not(:disabled) { background:var(--red-b); }
-.bf-submit:disabled { background:#333; cursor:not-allowed; opacity:0.5; }
-.bf-note { text-align:center; margin-top:1.2rem; font-size:0.8rem; color:var(--gray); line-height:1.6; }
-.bf-success { display:none; text-align:center; padding:2rem; background:rgba(26,122,58,0.12); border:1px solid rgba(46,204,113,0.3); margin-top:1.5rem; }
-.bf-success p { font-family:"Barlow Condensed",sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:0.1em; color:#2ecc71; }
+/* CALENDAR */
+.cal-wrap { max-width:900px; margin:3rem auto; padding:0 2rem; }
+.cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; }
+.cal-header h2 { font-family:"Bebas Neue",sans-serif; font-size:2rem; letter-spacing:0.04em; }
+.cal-nav { display:flex; gap:0.5rem; }
+.cal-btn { width:40px; height:40px; background:var(--bg2); border:1px solid var(--bdr); color:var(--yellow); font-size:1.2rem; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s; }
+.cal-btn:hover { background:var(--red); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cal-day-header { background:var(--bg3); padding:0.6rem; text-align:center; font-family:"Barlow Condensed",sans-serif; font-size:0.72rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); }
+.cal-cell { background:var(--bg2); min-height:90px; padding:0.5rem; border:1px solid rgba(255,255,255,0.04); position:relative; transition:background 0.2s; }
+.cal-cell.empty { background:var(--bg); opacity:0.3; }
+.cal-cell.today { border-color:var(--yellow); }
+.cal-num { font-size:0.8rem; font-weight:700; color:var(--gray); margin-bottom:0.3rem; }
+.cal-event { font-size:0.6rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:0.2rem 0.4rem; margin-bottom:2px; cursor:pointer; border-radius:2px; line-height:1.3; transition:opacity 0.2s; }
+.cal-event:hover { opacity:0.8; }
+.cal-event.group { background:rgba(184,28,28,0.3); color:#ff6b6b; border-left:3px solid var(--red); }
+.cal-event.tj { background:rgba(245,184,0,0.2); color:var(--yellow); border-left:3px solid var(--yellow); }
+.cal-event.youth { background:rgba(41,128,185,0.25); color:#5dade2; border-left:3px solid var(--blue); }
+
+/* LEGEND */
+.cal-legend { display:flex; gap:2rem; justify-content:center; margin-top:1.5rem; flex-wrap:wrap; }
+.cal-legend-item { display:flex; align-items:center; gap:0.5rem; font-size:0.78rem; color:var(--gray); }
+.cal-legend-dot { width:12px; height:12px; border-radius:2px; }
+.cal-legend-dot.red { background:var(--red); }
+.cal-legend-dot.gold { background:var(--yellow); }
+.cal-legend-dot.blue { background:var(--blue); }
+
+/* UPCOMING */
+.upcoming { max-width:900px; margin:3rem auto; padding:0 2rem; }
+.upcoming h2 { font-family:"Bebas Neue",sans-serif; font-size:1.8rem; letter-spacing:0.04em; margin-bottom:1.5rem; }
+.up-card { display:flex; align-items:center; justify-content:space-between; padding:1.2rem 1.5rem; background:var(--bg2); border:1px solid var(--bdr); margin-bottom:0.5rem; flex-wrap:wrap; gap:1rem; }
+.up-info { display:flex; align-items:center; gap:1.2rem; }
+.up-date { font-family:"Bebas Neue",sans-serif; font-size:1.3rem; color:var(--wht); min-width:60px; text-align:center; line-height:1.1; }
+.up-date span { display:block; font-size:0.65rem; color:var(--yellow); font-family:"Barlow Condensed",sans-serif; letter-spacing:0.1em; }
+.up-details { }
+.up-type { font-family:"Barlow Condensed",sans-serif; font-size:0.85rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; }
+.up-type.group { color:#ff6b6b; }
+.up-type.tj { color:var(--yellow); }
+.up-type.youth { color:#5dade2; }
+.up-loc { font-size:0.75rem; color:var(--gray); margin-top:0.2rem; }
+.up-btn { background:var(--red); color:var(--wht); border:none; padding:0.5rem 1.2rem; font-family:"Barlow Condensed",sans-serif; font-size:0.8rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); transition:background 0.2s; }
+.up-btn:hover { background:var(--red-b); }
+
+/* MODAL */
+.modal-overlay { display:none; position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; }
+.modal-overlay.open { display:flex; }
+.modal { background:var(--bg2); border:1px solid var(--bdr); border-top:3px solid var(--red); max-width:520px; width:90%; max-height:90vh; overflow-y:auto; padding:2.5rem; position:relative; }
+.modal-close { position:absolute; top:1rem; right:1.2rem; font-size:1.5rem; color:var(--gray); cursor:pointer; }
+.modal-close:hover { color:var(--wht); }
+.modal h3 { font-family:"Bebas Neue",sans-serif; font-size:1.6rem; letter-spacing:0.04em; margin-bottom:0.5rem; }
+.modal-session { font-size:0.78rem; color:var(--yellow); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1.5rem; }
+.mf-group { margin-bottom:1rem; }
+.mf-group label { display:block; font-family:"Barlow Condensed",sans-serif; font-size:0.72rem; font-weight:900; letter-spacing:0.18em; text-transform:uppercase; color:var(--yellow); margin-bottom:0.3rem; }
+.mf-group input { width:100%; padding:0.65rem 0.8rem; background:var(--bg3); border:1px solid var(--bdr); color:var(--wht); font-family:'Barlow',sans-serif; font-size:0.9rem; outline:none; transition:border-color 0.2s; }
+.mf-group input:focus { border-color:var(--yellow); }
+.mf-row { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
+.payment-badge { display:inline-block; background:var(--yellow); color:#000; font-family:"Barlow Condensed",sans-serif; font-size:0.7rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; padding:0.35rem 1rem; margin:1rem 0 0.5rem; clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%); }
+.mf-submit { width:100%; margin-top:1rem; padding:0.9rem; background:var(--red); color:var(--wht); border:none; font-family:"Barlow Condensed",sans-serif; font-size:1rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); transition:background 0.2s; }
+.mf-submit:hover { background:var(--red-b); }
+.mf-success { display:none; text-align:center; padding:1.5rem; background:rgba(26,122,58,0.12); border:1px solid rgba(46,204,113,0.3); margin-top:1rem; }
+.mf-success p { font-family:"Barlow Condensed",sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.1em; color:#2ecc71; }
+.mf-success .sub { font-size:0.82rem; color:var(--gray); margin-top:0.4rem; font-family:'Barlow',sans-serif; font-weight:400; letter-spacing:0; }
+
+/* ADMIN */
+.admin-trigger { text-align:center; padding:2rem; }
+.admin-link { color:var(--gray); font-size:0.75rem; letter-spacing:0.1em; text-decoration:none; cursor:pointer; transition:color 0.2s; }
+.admin-link:hover { color:var(--yellow); }
+.admin-panel { display:none; max-width:1000px; margin:0 auto 3rem; padding:0 2rem; }
+.admin-panel.open { display:block; }
+.admin-panel h2 { font-family:"Bebas Neue",sans-serif; font-size:1.8rem; letter-spacing:0.04em; margin-bottom:1rem; color:var(--yellow); }
+.roster-filter { display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+.rf-btn { padding:0.4rem 1rem; font-family:"Barlow Condensed",sans-serif; font-size:0.75rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase; background:var(--bg2); border:1px solid var(--bdr); color:var(--gray); cursor:pointer; transition:all 0.2s; }
+.rf-btn:hover, .rf-btn.active { background:var(--red); border-color:var(--red); color:var(--wht); }
+.roster-table { width:100%; border-collapse:collapse; }
+.roster-table th { background:var(--bg3); padding:0.8rem; font-family:"Barlow Condensed",sans-serif; font-size:0.72rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); text-align:left; border-bottom:2px solid var(--red); }
+.roster-table td { padding:0.7rem 0.8rem; font-size:0.82rem; color:var(--gray); border-bottom:1px solid rgba(255,255,255,0.04); }
+.roster-table tr:hover td { background:rgba(255,255,255,0.02); }
+.roster-table input[type="checkbox"] { width:18px; height:18px; accent-color:var(--red); cursor:pointer; }
+.roster-empty { text-align:center; padding:3rem; color:var(--gray); font-size:0.9rem; }
 
 /* FOOTER */
 footer { background:#0D0D0D; border-top:1px solid rgba(184,28,28,0.25); padding:1.2rem 4rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
@@ -105,12 +142,24 @@ footer img { height:42px; }
   ul.nm { gap:1rem; flex-wrap:wrap; justify-content:center; }
   ul.nm a { font-size:0.6rem; letter-spacing:0.06em; }
   .nav-cta-btn { padding:0.4rem 0.8rem; font-size:0.6rem; letter-spacing:0.06em; }
-  .nl img { height:55px; }
+  .nl img { height:75px; }
   .page-hero { padding:8rem 1.5rem 2rem; }
-  .booking-wrap { padding:0 1rem; }
-  .booking-card { padding:1.5rem; }
-  .bf-row { grid-template-columns:1fr; }
-  footer { padding:1rem 1.5rem; }
+  footer { padding:1rem 1.5rem; flex-direction:column; text-align:center; }
+}
+@media(max-width:768px) {
+  .nl img { height:55px; }
+  .cal-wrap, .upcoming { padding:0 1rem; }
+  .cal-cell { min-height:70px; padding:0.3rem; }
+  .cal-event { font-size:0.5rem; padding:0.15rem 0.3rem; }
+  .cal-num { font-size:0.7rem; }
+  .up-card { flex-direction:column; align-items:flex-start; }
+  .mf-row { grid-template-columns:1fr; }
+}
+@media(max-width:540px) {
+  .nl img { height:45px; }
+  .cal-day-header { font-size:0.55rem; padding:0.4rem 0.2rem; }
+  .cal-cell { min-height:55px; }
+  .cal-event { font-size:0.45rem; }
 }
 </style>
 </head>
@@ -123,139 +172,110 @@ footer img { height:42px; }
     <li><a href="index.html#about">About Us</a></li>
     <li><a href="index.html#pricing">Pricing</a></li>
     <li><a href="index.html#register" style="color:var(--yellow)!important;">Registration</a></li>
-    <li><a href="index.html#calendar">Calendar</a></li>
+    <li><a href="booking.html" style="color:var(--wht)!important;">Calendar</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="index.html#coaches-corner">Coaches Corner</a></li>
-    <li><a href="index.html#register">Contact</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:0.6rem;">
     <a href="https://facebook.com/sappsolineacademy" target="_blank" style="color:var(--gray);transition:color 0.2s;display:flex;align-items:center;" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
     <a href="https://instagram.com/sappsolineacademy" target="_blank" style="color:var(--gray);transition:color 0.2s;display:flex;align-items:center;" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-    <a href="booking.html" class="nav-cta-btn" style="color:var(--wht)!important;">Book Now</a>
+    <a href="booking.html" class="nav-cta-btn">Book Now</a>
   </div>
 </nav>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
-  <div class="lbl">Reserve Your Spot</div>
-  <h1>BOOK YOUR SESSION</h1>
-  <p>Select your training type, pick a date and time, and Coach Sapp will confirm your session directly.</p>
+  <div class="lbl">Schedule & Register</div>
+  <h1>TRAINING CALENDAR</h1>
+  <p>View upcoming sessions, pick your date, and reserve your spot. Coach Sapp will confirm your session directly.</p>
 </div>
 
-<!-- BOOKING FORM -->
-<div class="booking-wrap">
-  <div class="booking-card">
-    <div class="fttl">SESSION DETAILS</div>
-
-    <div class="bf-group">
-      <label for="bf-session">Session Type</label>
-      <select id="bf-session" name="session">
-        <option value="">Select a session type</option>
-        <option value="group">Group Training — $35/session</option>
-        <option value="coach-tj">Full Session with Coach TJ — $35/session</option>
-        <option value="one-on-one">One on One — $50/session</option>
-        <option value="youth-prep">Youth Prep — $35/session</option>
-        <option value="strength">Strength & Conditioning — $35/session</option>
-      </select>
+<!-- CALENDAR -->
+<div class="cal-wrap">
+  <div class="cal-header">
+    <h2 id="calMonth"></h2>
+    <div class="cal-nav">
+      <div class="cal-btn" onclick="changeMonth(-1)">&#10094;</div>
+      <div class="cal-btn" onclick="changeMonth(0)">Today</div>
+      <div class="cal-btn" onclick="changeMonth(1)">&#10095;</div>
     </div>
+  </div>
+  <div class="cal-grid" id="calGrid">
+    <div class="cal-day-header">Sun</div>
+    <div class="cal-day-header">Mon</div>
+    <div class="cal-day-header">Tue</div>
+    <div class="cal-day-header">Wed</div>
+    <div class="cal-day-header">Thu</div>
+    <div class="cal-day-header">Fri</div>
+    <div class="cal-day-header">Sat</div>
+  </div>
+  <div class="cal-legend">
+    <div class="cal-legend-item"><div class="cal-legend-dot red"></div>Group Training — Sat 9AM</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot gold"></div>Coach TJ — Tue 4PM</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot blue"></div>Youth Prep — Thu 5PM</div>
+  </div>
+</div>
 
-    <div class="bf-row">
-      <div class="bf-group">
-        <label for="bf-date">Preferred Date</label>
-        <input type="date" id="bf-date" name="date">
-      </div>
-      <div class="bf-group">
-        <label for="bf-time">Preferred Time</label>
-        <select id="bf-time" name="time">
-          <option value="">Select a time</option>
-          <option>8:00 AM</option>
-          <option>9:00 AM</option>
-          <option>10:00 AM</option>
-          <option>11:00 AM</option>
-          <option>12:00 PM</option>
-          <option>1:00 PM</option>
-          <option>2:00 PM</option>
-          <option>3:00 PM</option>
-          <option>4:00 PM</option>
-          <option>5:00 PM</option>
-          <option>6:00 PM</option>
-          <option>7:00 PM</option>
-        </select>
-      </div>
+<!-- UPCOMING SESSIONS -->
+<div class="upcoming">
+  <h2>UPCOMING SESSIONS</h2>
+  <div id="upcomingList"></div>
+</div>
+
+<!-- ADMIN TRIGGER -->
+<div class="admin-trigger">
+  <a class="admin-link" onclick="promptAdmin()">&#128274; Coach Admin</a>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="adminPanel">
+  <h2>&#128274; ROSTER & ATTENDANCE</h2>
+  <div class="roster-filter">
+    <button class="rf-btn active" onclick="filterRoster('all',this)">All</button>
+    <button class="rf-btn" onclick="filterRoster('Group Training',this)">Group Training</button>
+    <button class="rf-btn" onclick="filterRoster('Coach TJ',this)">Coach TJ</button>
+    <button class="rf-btn" onclick="filterRoster('Youth Prep',this)">Youth Prep</button>
+  </div>
+  <table class="roster-table">
+    <thead>
+      <tr><th>Athlete</th><th>Phone</th><th>Age</th><th>Session</th><th>Date</th><th>Present</th></tr>
+    </thead>
+    <tbody id="rosterBody"></tbody>
+  </table>
+  <div class="roster-empty" id="rosterEmpty" style="display:none;">No registrations yet.</div>
+</div>
+
+<!-- REGISTRATION MODAL -->
+<div class="modal-overlay" id="regModal">
+  <div class="modal">
+    <div class="modal-close" onclick="closeModal()">&times;</div>
+    <h3>REGISTER FOR SESSION</h3>
+    <div class="modal-session" id="modalSession"></div>
+    <div class="mf-group">
+      <label>Athlete Name *</label>
+      <input type="text" id="mf-name" placeholder="Full name">
     </div>
-
-    <div class="bf-group">
-      <label for="bf-location">Session Location</label>
-      <select id="bf-location" name="location" onchange="updateLocation()">
-        <option value="">Select a location</option>
-        <option value="sapps">Sapp's O-Line Academy — Orlando, FL</option>
-        <option value="first-academy">First Academy — Bruton Blvd, Orlando, FL</option>
-      </select>
-      <div class="bf-location" id="bf-loc-display" style="margin-top:0.6rem;display:none;">
-        <div class="loc-icon">&#9679;</div>
-        <div class="loc-text" id="bf-loc-text"></div>
+    <div class="mf-row">
+      <div class="mf-group">
+        <label>Phone *</label>
+        <input type="tel" id="mf-phone" placeholder="(000) 000-0000">
       </div>
-    </div>
-
-    <div class="bf-row">
-      <div class="bf-group">
-        <label for="bf-name">Your Name</label>
-        <input type="text" id="bf-name" name="name" placeholder="Full name">
-      </div>
-      <div class="bf-group">
-        <label for="bf-phone">Phone Number</label>
-        <input type="tel" id="bf-phone" name="phone" placeholder="(000) 000-0000">
-      </div>
-    </div>
-
-    <div class="bf-group">
-      <label for="bf-email">Email</label>
-      <input type="email" id="bf-email" name="email" placeholder="your@email.com">
-    </div>
-
-    <div class="bf-waiver-wrap" id="waiverWrap">
-      <div class="bf-waiver-toggle" onclick="document.getElementById('waiverWrap').classList.toggle('open')">
-        <span>Athletic Participation Waiver</span>
-        <div class="bf-waiver-arrow">&#9660;</div>
-      </div>
-      <div class="bf-waiver-body">
-        <div class="bf-waiver-content">
-          <h4>Assumption of Risk & Liability Waiver</h4>
-          <p>I acknowledge that participation in football training, strength and conditioning, and related athletic activities conducted by <strong>SAPP'S O-Line Academy</strong> involves inherent risks including but not limited to: physical contact, muscle strains, sprains, fractures, concussions, heat-related illness, and other bodily injury. I voluntarily assume all risks associated with participation.</p>
-          <p style="margin-top:0.8rem;">I hereby <strong>release, waive, and forever discharge</strong> SAPP'S O-Line Academy, its owner <strong>Tyrone Sapp Sr.</strong>, coach <strong>Tyrone Sapp Jr. (Coach TJ)</strong>, all coaching staff, assistants, volunteers, and affiliated parties from any and all liability, claims, demands, or causes of action arising from injury, illness, death, or property damage — whether caused by negligence or otherwise.</p>
-
-          <h4>Medical Authorization</h4>
-          <p>In the event of injury or medical emergency, I authorize coaching staff to seek and obtain emergency medical treatment on behalf of the participant. I agree to bear all costs of such treatment.</p>
-
-          <h4>Photo & Video Release</h4>
-          <p>I grant <strong>SAPP'S O-Line Academy</strong> the irrevocable right to photograph, video record, and use the participant's name, image, and likeness in any media — including websites, social media, print materials, and promotional videos — without compensation or further consent.</p>
-
-          <h4>Code of Conduct</h4>
-          <ul>
-            <li>Show respect to all coaches, staff, and fellow athletes</li>
-            <li>Follow all instructions and safety guidelines</li>
-            <li>No bullying, harassment, or unsportsmanlike behavior</li>
-            <li>Arrive on time and prepared for all sessions</li>
-            <li>Report any injury or concern to staff immediately</li>
-          </ul>
-          <p style="margin-top:0.8rem;"><strong>Violation may result in removal from the program without refund.</strong></p>
-
-          <a href="waiver.html" target="_blank" class="bf-waiver-link">View Full Waiver &rarr;</a>
-        </div>
-        <label class="bf-waiver-check">
-          <input type="checkbox" id="bf-waiver-chk" onchange="document.getElementById('bf-btn').disabled=!this.checked">
-          <span>I have read and agree to the Athletic Participation Waiver</span>
-        </label>
+      <div class="mf-group">
+        <label>Athlete Age *</label>
+        <input type="number" id="mf-age" placeholder="Age" min="5" max="99">
       </div>
     </div>
-
-    <button class="bf-submit" id="bf-btn" type="button" onclick="submitBooking()" disabled>Book Now &rarr;</button>
-
-    <div class="bf-success" id="bf-success">
-      <p>BOOKING REQUEST RECEIVED — COACH SAPP WILL CONFIRM WITHIN 24 HOURS.</p>
+    <div class="mf-group">
+      <label>Email</label>
+      <input type="email" id="mf-email" placeholder="your@email.com">
     </div>
-
-    <p class="bf-note">Spots are limited. Coach Sapp will follow up to confirm your session, time, and location.</p>
+    <div class="payment-badge">Payment Coming Soon</div>
+    <button class="mf-submit" onclick="submitReg()">Reserve My Spot &rarr;</button>
+    <div class="mf-success" id="mfSuccess">
+      <p>SPOT RESERVED</p>
+      <p class="sub">Coach Sapp will confirm your session, time, and location.</p>
+    </div>
   </div>
 </div>
 
@@ -271,39 +291,190 @@ footer img { height:42px; }
 <div class="built-by">Built & Designed by <a href="#" class="built-link">The Phoenix Blueprint</a></div>
 
 <script>
-function updateLocation(){
-  var sel = document.getElementById('bf-location');
-  var display = document.getElementById('bf-loc-display');
-  var text = document.getElementById('bf-loc-text');
-  if(sel.value === 'sapps'){
-    text.innerHTML = '<strong>Sapp\'s O-Line Academy</strong>Orlando, FL — Exact address provided upon booking confirmation';
-    display.style.display = 'flex';
-  } else if(sel.value === 'first-academy'){
-    text.innerHTML = '<strong>First Academy</strong>Bruton Blvd, Orlando, FL';
-    display.style.display = 'flex';
-  } else {
-    display.style.display = 'none';
+// Session definitions
+var SESSIONS = [
+  { day:6, name:'Group Training', time:'9:00 AM', loc:'Eagle Nest Park — 5165 Metrowest Blvd, Orlando FL', cls:'group' },
+  { day:2, name:'Coach TJ', time:'4:00 PM', loc:'First Academy — 2667 Bruton Blvd, Orlando FL 32805', cls:'tj' },
+  { day:4, name:'Youth Prep', time:'5:00 PM', loc:'Eagle Nest Park — 5165 Metrowest Blvd, Orlando FL', cls:'youth' }
+];
+var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+var curDate = new Date();
+var curYear = curDate.getFullYear();
+var curMonth = curDate.getMonth();
+var selectedSession = null;
+
+function renderCalendar(year, month){
+  curYear = year; curMonth = month;
+  document.getElementById('calMonth').textContent = MONTHS[month] + ' ' + year;
+  var grid = document.getElementById('calGrid');
+  // Remove old cells
+  var old = grid.querySelectorAll('.cal-cell');
+  old.forEach(function(c){ c.remove(); });
+  var firstDay = new Date(year, month, 1).getDay();
+  var daysInMonth = new Date(year, month+1, 0).getDate();
+  var today = new Date();
+  // Empty cells before first day
+  for(var e=0;e<firstDay;e++){
+    var empty = document.createElement('div');
+    empty.className = 'cal-cell empty';
+    grid.appendChild(empty);
+  }
+  // Day cells
+  for(var d=1;d<=daysInMonth;d++){
+    var cell = document.createElement('div');
+    cell.className = 'cal-cell';
+    if(d===today.getDate() && month===today.getMonth() && year===today.getFullYear()) cell.className += ' today';
+    var num = document.createElement('div');
+    num.className = 'cal-num';
+    num.textContent = d;
+    cell.appendChild(num);
+    var dow = new Date(year, month, d).getDay();
+    SESSIONS.forEach(function(s){
+      if(s.day === dow){
+        var ev = document.createElement('div');
+        ev.className = 'cal-event ' + s.cls;
+        ev.textContent = s.name;
+        ev.onclick = (function(sess, day){
+          return function(e){
+            e.stopPropagation();
+            openModal(sess, new Date(year, month, day));
+          };
+        })(s, d);
+        cell.appendChild(ev);
+      }
+    });
+    grid.appendChild(cell);
   }
 }
-function submitBooking(){
-  var session = document.getElementById('bf-session').value;
-  var date = document.getElementById('bf-date').value;
-  var time = document.getElementById('bf-time').value;
-  var name = document.getElementById('bf-name').value.trim();
-  var phone = document.getElementById('bf-phone').value.trim();
-  if(!session || !date || !time || !name || !phone){
-    alert('Please fill out all required fields.');
+
+function changeMonth(dir){
+  if(dir === 0){ curYear = new Date().getFullYear(); curMonth = new Date().getMonth(); }
+  else { curMonth += dir; if(curMonth>11){curMonth=0;curYear++;} if(curMonth<0){curMonth=11;curYear--;} }
+  renderCalendar(curYear, curMonth);
+}
+
+// Upcoming sessions
+function renderUpcoming(){
+  var list = document.getElementById('upcomingList');
+  list.innerHTML = '';
+  var today = new Date(); today.setHours(0,0,0,0);
+  var upcoming = [];
+  for(var i=0;i<60;i++){
+    var d = new Date(today.getTime() + i*86400000);
+    var dow = d.getDay();
+    SESSIONS.forEach(function(s){
+      if(s.day === dow) upcoming.push({date:new Date(d), session:s});
+    });
+  }
+  upcoming = upcoming.slice(0,8);
+  upcoming.forEach(function(u){
+    var card = document.createElement('div');
+    card.className = 'up-card';
+    var dayNum = u.date.getDate();
+    var monthShort = MONTHS[u.date.getMonth()].substring(0,3).toUpperCase();
+    var dayName = DAYS_SHORT[u.date.getDay()];
+    card.innerHTML = '<div class="up-info"><div class="up-date">' + dayNum + '<span>' + monthShort + '</span></div><div class="up-details"><div class="up-type ' + u.session.cls + '">' + u.session.name + ' — ' + u.session.time + '</div><div class="up-loc">' + u.session.loc + '</div></div></div><button class="up-btn" onclick="openModal(SESSIONS[' + SESSIONS.indexOf(u.session) + '],new Date(' + u.date.getFullYear() + ',' + u.date.getMonth() + ',' + u.date.getDate() + '))">Register</button>';
+    list.appendChild(card);
+  });
+}
+
+// Modal
+function openModal(session, date){
+  selectedSession = { session:session, date:date };
+  var dateStr = MONTHS[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+  document.getElementById('modalSession').textContent = session.name + ' — ' + session.time + ' — ' + dateStr;
+  document.getElementById('mfSuccess').style.display = 'none';
+  document.getElementById('mf-name').value = '';
+  document.getElementById('mf-phone').value = '';
+  document.getElementById('mf-age').value = '';
+  document.getElementById('mf-email').value = '';
+  document.getElementById('regModal').classList.add('open');
+}
+function closeModal(){ document.getElementById('regModal').classList.remove('open'); }
+document.getElementById('regModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+function submitReg(){
+  var name = document.getElementById('mf-name').value.trim();
+  var phone = document.getElementById('mf-phone').value.trim();
+  var age = document.getElementById('mf-age').value;
+  if(!name || !phone || !age){ alert('Please fill out all required fields.'); return; }
+  var email = document.getElementById('mf-email').value.trim();
+  // Save to localStorage
+  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
+  roster.push({
+    name: name,
+    phone: phone,
+    age: age,
+    email: email,
+    session: selectedSession.session.name,
+    date: selectedSession.date.toISOString().split('T')[0],
+    time: selectedSession.session.time,
+    loc: selectedSession.session.loc,
+    present: false,
+    id: Date.now()
+  });
+  localStorage.setItem('soa_roster', JSON.stringify(roster));
+  document.getElementById('mfSuccess').style.display = 'block';
+  document.querySelector('.mf-submit').textContent = 'Reserved';
+  document.querySelector('.mf-submit').style.background = 'rgba(26,122,58,0.5)';
+  setTimeout(function(){
+    document.querySelector('.mf-submit').textContent = 'Reserve My Spot \u2192';
+    document.querySelector('.mf-submit').style.background = '';
+  }, 3000);
+}
+
+// Admin
+var adminAuth = false;
+function promptAdmin(){
+  if(adminAuth){ toggleAdmin(); return; }
+  var pw = prompt('Enter admin password:');
+  if(pw === 'SappAcademy2026'){
+    adminAuth = true;
+    toggleAdmin();
+  } else if(pw !== null){
+    alert('Incorrect password.');
+  }
+}
+function toggleAdmin(){
+  var panel = document.getElementById('adminPanel');
+  panel.classList.toggle('open');
+  if(panel.classList.contains('open')) renderRoster('all');
+}
+function renderRoster(filter){
+  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
+  var tbody = document.getElementById('rosterBody');
+  var empty = document.getElementById('rosterEmpty');
+  tbody.innerHTML = '';
+  var filtered = filter === 'all' ? roster : roster.filter(function(r){ return r.session === filter; });
+  if(filtered.length === 0){
+    empty.style.display = 'block';
     return;
   }
-  var btn = document.querySelector('.bf-submit');
-  btn.textContent = 'Submitting...';
-  btn.style.background = '#333';
-  setTimeout(function(){
-    document.getElementById('bf-success').style.display = 'block';
-    btn.textContent = 'Book Now \u2192';
-    btn.style.background = '';
-  }, 1500);
+  empty.style.display = 'none';
+  filtered.sort(function(a,b){ return a.date > b.date ? 1 : -1; });
+  filtered.forEach(function(r){
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td style="color:var(--wht);font-weight:700;">' + r.name + '</td><td>' + r.phone + '</td><td>' + r.age + '</td><td>' + r.session + '</td><td>' + r.date + '</td><td><input type="checkbox" ' + (r.present?'checked':'') + ' onchange="togglePresent(' + r.id + ',this.checked)"></td>';
+    tbody.appendChild(tr);
+  });
 }
+function filterRoster(filter, btn){
+  document.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderRoster(filter);
+}
+function togglePresent(id, checked){
+  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
+  roster.forEach(function(r){ if(r.id === id) r.present = checked; });
+  localStorage.setItem('soa_roster', JSON.stringify(roster));
+}
+
+// Init
+renderCalendar(curYear, curMonth);
+renderUpcoming();
 </script>
 </body>
 </html>
