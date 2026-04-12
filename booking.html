@@ -112,9 +112,45 @@ ul.nm a:hover { color:var(--wht); }
 .admin-trigger { text-align:center; padding:2rem; }
 .admin-link { color:var(--gray); font-size:0.75rem; letter-spacing:0.1em; text-decoration:none; cursor:pointer; transition:color 0.2s; }
 .admin-link:hover { color:var(--yellow); }
-.admin-panel { display:none; max-width:1000px; margin:0 auto 3rem; padding:0 2rem; }
+.admin-panel { display:none; max-width:1100px; margin:0 auto 3rem; padding:0 2rem; }
 .admin-panel.open { display:block; }
 .admin-panel h2 { font-family:"Bebas Neue",sans-serif; font-size:1.8rem; letter-spacing:0.04em; margin-bottom:1rem; color:var(--yellow); }
+
+/* Add Session form */
+.add-session-wrap { background:var(--bg2); border:1px solid var(--bdr); border-left:3px solid var(--yellow); margin-bottom:2rem; }
+.add-session-toggle { padding:1rem 1.2rem; cursor:pointer; font-family:"Barlow Condensed",sans-serif; font-size:0.85rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); display:flex; justify-content:space-between; align-items:center; }
+.add-session-toggle:hover { background:rgba(245,184,0,0.05); }
+.add-session-form { display:none; padding:1.2rem; background:var(--bg3); border-top:1px solid var(--bdr); }
+.add-session-form.open { display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8rem; }
+.add-session-form input, .add-session-form select { width:100%; padding:0.6rem; background:var(--bg2); border:1px solid var(--bdr); color:var(--wht); font-family:'Barlow',sans-serif; font-size:0.85rem; outline:none; }
+.add-session-form input:focus, .add-session-form select:focus { border-color:var(--yellow); }
+.add-session-form label { display:block; font-size:0.65rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; color:var(--yellow); margin-bottom:0.3rem; }
+.add-session-form .as-save { grid-column:1/-1; padding:0.7rem; background:var(--red); color:var(--wht); border:none; font-family:"Barlow Condensed",sans-serif; font-size:0.85rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); }
+.add-session-form .as-save:hover { background:var(--red-b); }
+
+/* Session Cards */
+.session-card { background:var(--bg2); border:1px solid var(--bdr); margin-bottom:1.5rem; }
+.session-card-header { padding:1rem 1.2rem; background:var(--bg3); border-bottom:2px solid var(--red); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.8rem; }
+.session-card-title { font-family:"Bebas Neue",sans-serif; font-size:1.2rem; letter-spacing:0.04em; color:var(--wht); }
+.session-card-title .sct-label { display:inline-block; font-family:"Barlow Condensed",sans-serif; font-size:0.65rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; padding:0.2rem 0.6rem; background:rgba(184,28,28,0.25); color:#ff8080; margin-right:0.6rem; vertical-align:middle; }
+.delete-session-btn { padding:0.4rem 0.8rem; background:transparent; border:1px solid var(--red); color:var(--red); font-family:"Barlow Condensed",sans-serif; font-size:0.7rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
+.delete-session-btn:hover { background:var(--red); color:var(--wht); }
+
+/* Student row actions */
+.roster-table td .row-actions { display:flex; gap:0.4rem; align-items:center; }
+.btn-small { padding:0.3rem 0.6rem; font-family:"Barlow Condensed",sans-serif; font-size:0.65rem; font-weight:900; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; border:none; transition:all 0.2s; }
+.btn-move { background:var(--bg3); color:var(--yellow); border:1px solid rgba(245,184,0,0.3); }
+.btn-move:hover { background:var(--yellow); color:#000; }
+.btn-delete { background:transparent; color:#ff6b6b; border:1px solid rgba(255,107,107,0.3); }
+.btn-delete:hover { background:#ff6b6b; color:#fff; }
+.move-select { padding:0.3rem; background:var(--bg3); color:var(--wht); border:1px solid var(--bdr); font-family:'Barlow',sans-serif; font-size:0.75rem; }
+
+/* Add Student inline form */
+.add-student-row { padding:0.8rem; background:var(--bg3); border-top:1px solid var(--bdr); display:grid; grid-template-columns:repeat(4,1fr) auto auto; gap:0.5rem; align-items:end; }
+.add-student-row input { padding:0.5rem; background:var(--bg2); border:1px solid var(--bdr); color:var(--wht); font-family:'Barlow',sans-serif; font-size:0.8rem; outline:none; }
+.add-student-row input:focus { border-color:var(--yellow); }
+.add-student-btn { padding:0.6rem 1rem; background:transparent; color:var(--yellow); border:1px dashed rgba(245,184,0,0.3); font-family:"Barlow Condensed",sans-serif; font-size:0.72rem; font-weight:900; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; width:100%; transition:all 0.2s; }
+.add-student-btn:hover { background:rgba(245,184,0,0.08); border-style:solid; }
 .roster-filter { display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap; }
 .rf-btn { padding:0.4rem 1rem; font-family:"Barlow Condensed",sans-serif; font-size:0.75rem; font-weight:900; letter-spacing:0.12em; text-transform:uppercase; background:var(--bg2); border:1px solid var(--bdr); color:var(--gray); cursor:pointer; transition:all 0.2s; }
 .rf-btn:hover, .rf-btn.active { background:var(--red); border-color:var(--red); color:var(--wht); }
@@ -231,17 +267,39 @@ footer img { height:42px; }
 <!-- ADMIN PANEL -->
 <div class="admin-panel" id="adminPanel">
   <h2>&#128274; ROSTER & ATTENDANCE</h2>
-  <div class="roster-filter">
-    <button class="rf-btn active" onclick="filterRoster('all',this)">All</button>
-    <button class="rf-btn" onclick="filterRoster('Group Training',this)">Group Training</button>
+
+  <!-- Add Session -->
+  <div class="add-session-wrap">
+    <div class="add-session-toggle" onclick="toggleAddSession()">
+      <span>+ Add New Session</span>
+      <span id="addSessionArrow">&#9660;</span>
+    </div>
+    <div class="add-session-form" id="addSessionForm">
+      <div><label>Session Type</label>
+        <select id="as-type">
+          <option>Group Training</option>
+          <option>Coach TJ Private</option>
+          <option>Youth Prep</option>
+          <option>Camp</option>
+          <option>Clinic</option>
+        </select>
+      </div>
+      <div><label>Date</label><input type="date" id="as-date"></div>
+      <div><label>Time</label><input type="text" id="as-time" placeholder="e.g. 6:00 PM"></div>
+      <div><label>Location</label><input type="text" id="as-loc" placeholder="Address or facility name"></div>
+      <div><label>Spots Available</label><input type="number" id="as-spots" min="1" value="12"></div>
+      <button class="as-save" onclick="saveNewSession()">Save Session</button>
+    </div>
   </div>
-  <table class="roster-table">
-    <thead>
-      <tr><th>Athlete</th><th>Phone</th><th>Age</th><th>Session</th><th>Date</th><th>Present</th></tr>
-    </thead>
-    <tbody id="rosterBody"></tbody>
-  </table>
-  <div class="roster-empty" id="rosterEmpty" style="display:none;">No registrations yet.</div>
+
+  <div class="roster-filter">
+    <button class="rf-btn active" onclick="filterSessionCards('all',this)">All</button>
+    <button class="rf-btn" onclick="filterSessionCards('Group Training',this)">Group Training</button>
+    <button class="rf-btn" onclick="filterSessionCards('custom',this)">Custom Sessions</button>
+  </div>
+
+  <div id="sessionCards"></div>
+  <div class="roster-empty" id="rosterEmpty" style="display:none;">No upcoming sessions.</div>
 </div>
 
 <!-- REGISTRATION MODAL -->
@@ -329,8 +387,13 @@ function renderCalendar(year, month){
     num.textContent = d;
     cell.appendChild(num);
     var dow = new Date(year, month, d).getDay();
+    var cellDate = new Date(year, month, d);
+    var cellIso = cellDate.toISOString().split('T')[0];
+    var cancelledList = JSON.parse(localStorage.getItem('soa_cancelled_dates') || '[]');
+    var customList = JSON.parse(localStorage.getItem('soa_custom_sessions') || '[]');
     SESSIONS.forEach(function(s){
       if(s.day === dow){
+        if(cancelledList.indexOf(s.name + '|' + cellIso + '|' + s.time) !== -1) return;
         var ev = document.createElement('div');
         ev.className = 'cal-event ' + s.cls;
         ev.textContent = s.name;
@@ -340,6 +403,22 @@ function renderCalendar(year, month){
             openModal(sess, new Date(year, month, day));
           };
         })(s, d);
+        cell.appendChild(ev);
+      }
+    });
+    // Custom sessions for this date
+    customList.forEach(function(c){
+      if(c.date === cellIso){
+        var ev = document.createElement('div');
+        ev.className = 'cal-event';
+        ev.style.cssText = 'background:rgba(155,89,182,0.3);color:#bb8fce;border-left:3px solid #9b59b6;';
+        ev.textContent = c.type;
+        ev.onclick = (function(cs){
+          return function(e){
+            e.stopPropagation();
+            openModal({ name:cs.type, time:cs.time, loc:cs.location, cls:'custom' }, new Date(cs.date + 'T12:00:00'));
+          };
+        })(c);
         cell.appendChild(ev);
       }
     });
@@ -358,14 +437,28 @@ function renderUpcoming(){
   var list = document.getElementById('upcomingList');
   list.innerHTML = '';
   var today = new Date(); today.setHours(0,0,0,0);
+  var cancelled = JSON.parse(localStorage.getItem('soa_cancelled_dates') || '[]');
+  var custom = JSON.parse(localStorage.getItem('soa_custom_sessions') || '[]');
   var upcoming = [];
   for(var i=0;i<60;i++){
     var d = new Date(today.getTime() + i*86400000);
     var dow = d.getDay();
     SESSIONS.forEach(function(s){
-      if(s.day === dow) upcoming.push({date:new Date(d), session:s});
+      if(s.day === dow){
+        var iso = d.toISOString().split('T')[0];
+        if(cancelled.indexOf(s.name + '|' + iso + '|' + s.time) === -1){
+          upcoming.push({ date:new Date(d), session:s, kind:'recurring' });
+        }
+      }
     });
   }
+  custom.forEach(function(c){
+    var cd = new Date(c.date + 'T12:00:00');
+    if(cd >= today){
+      upcoming.push({ date:cd, session:{ name:c.type, time:c.time, loc:c.location, cls:'custom' }, kind:'custom' });
+    }
+  });
+  upcoming.sort(function(a,b){ return a.date - b.date; });
   upcoming = upcoming.slice(0,8);
   upcoming.forEach(function(u){
     var card = document.createElement('div');
@@ -373,7 +466,8 @@ function renderUpcoming(){
     var dayNum = u.date.getDate();
     var monthShort = MONTHS[u.date.getMonth()].substring(0,3).toUpperCase();
     var dayName = DAYS_SHORT[u.date.getDay()];
-    card.innerHTML = '<div class="up-info"><div class="up-date">' + dayNum + '<span>' + monthShort + '</span></div><div class="up-details"><div class="up-type ' + u.session.cls + '">' + u.session.name + ' — ' + u.session.time + '</div><div class="up-loc">' + u.session.loc + '</div></div></div><button class="up-btn" onclick="openModal(SESSIONS[' + SESSIONS.indexOf(u.session) + '],new Date(' + u.date.getFullYear() + ',' + u.date.getMonth() + ',' + u.date.getDate() + '))">Register</button>';
+    var sessData = JSON.stringify(u.session).replace(/"/g, '&quot;');
+    card.innerHTML = '<div class="up-info"><div class="up-date">' + dayNum + '<span>' + monthShort + '</span></div><div class="up-details"><div class="up-type ' + u.session.cls + '">' + u.session.name + ' &mdash; ' + u.session.time + '</div><div class="up-loc">' + u.session.loc + '</div></div></div><button class="up-btn" onclick="openModal(JSON.parse(this.dataset.s),new Date(' + u.date.getFullYear() + ',' + u.date.getMonth() + ',' + u.date.getDate() + '))" data-s="' + sessData + '">Register</button>';
     list.appendChild(card);
   });
 }
@@ -439,31 +533,197 @@ function promptAdmin(){
 function toggleAdmin(){
   var panel = document.getElementById('adminPanel');
   panel.classList.toggle('open');
-  if(panel.classList.contains('open')) renderRoster('all');
+  if(panel.classList.contains('open')) renderSessionCards('all');
 }
-function renderRoster(filter){
-  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
-  var tbody = document.getElementById('rosterBody');
-  var empty = document.getElementById('rosterEmpty');
-  tbody.innerHTML = '';
-  var filtered = filter === 'all' ? roster : roster.filter(function(r){ return r.session === filter; });
-  if(filtered.length === 0){
-    empty.style.display = 'block';
-    return;
+
+// Build list of all upcoming sessions (recurring next 60 days + custom - cancelled)
+function getAllUpcomingSessions(){
+  var cancelled = JSON.parse(localStorage.getItem('soa_cancelled_dates') || '[]');
+  var custom = JSON.parse(localStorage.getItem('soa_custom_sessions') || '[]');
+  var today = new Date(); today.setHours(0,0,0,0);
+  var all = [];
+  for(var i=0;i<60;i++){
+    var d = new Date(today.getTime() + i*86400000);
+    var dow = d.getDay();
+    SESSIONS.forEach(function(s){
+      if(s.day === dow){
+        var iso = d.toISOString().split('T')[0];
+        var key = s.name + '|' + iso + '|' + s.time;
+        if(cancelled.indexOf(key) === -1){
+          all.push({ key:key, type:s.name, date:iso, time:s.time, loc:s.loc, kind:'recurring' });
+        }
+      }
+    });
   }
+  custom.forEach(function(c){
+    if(new Date(c.date) >= today){
+      all.push({ key:c.id, type:c.type, date:c.date, time:c.time, loc:c.location, spots:c.spots, kind:'custom', id:c.id });
+    }
+  });
+  all.sort(function(a,b){ return (a.date+a.time) > (b.date+b.time) ? 1 : -1; });
+  return all;
+}
+
+function renderSessionCards(filter){
+  var container = document.getElementById('sessionCards');
+  var empty = document.getElementById('rosterEmpty');
+  container.innerHTML = '';
+  var sessions = getAllUpcomingSessions();
+  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
+  if(filter === 'Group Training') sessions = sessions.filter(function(s){ return s.type === 'Group Training'; });
+  if(filter === 'custom') sessions = sessions.filter(function(s){ return s.kind === 'custom'; });
+  if(sessions.length === 0){ empty.style.display = 'block'; return; }
   empty.style.display = 'none';
-  filtered.sort(function(a,b){ return a.date > b.date ? 1 : -1; });
-  filtered.forEach(function(r){
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td style="color:var(--wht);font-weight:700;">' + r.name + '</td><td>' + r.phone + '</td><td>' + r.age + '</td><td>' + r.session + '</td><td>' + r.date + '</td><td><input type="checkbox" ' + (r.present?'checked':'') + ' onchange="togglePresent(' + r.id + ',this.checked)"></td>';
-    tbody.appendChild(tr);
+  sessions.forEach(function(sess){
+    var card = document.createElement('div');
+    card.className = 'session-card';
+    var dateObj = new Date(sess.date + 'T12:00:00');
+    var dateStr = MONTHS[dateObj.getMonth()] + ' ' + dateObj.getDate() + ', ' + dateObj.getFullYear();
+    var dayName = DAYS_SHORT[dateObj.getDay()];
+    var attendees = roster.filter(function(r){ return r.session === sess.type && r.date === sess.date && r.time === sess.time; });
+    var rowsHtml = '';
+    if(attendees.length === 0){
+      rowsHtml = '<tr><td colspan="6" style="text-align:center;padding:1.5rem;color:var(--gray);font-style:italic;">No athletes registered yet.</td></tr>';
+    } else {
+      attendees.forEach(function(a){
+        rowsHtml += '<tr><td style="color:var(--wht);font-weight:700;">' + a.name + '</td><td>' + a.phone + '</td><td>' + a.age + '</td><td>' + (a.email||'') + '</td><td><input type="checkbox" ' + (a.present?'checked':'') + ' onchange="togglePresent(' + a.id + ',this.checked)"></td><td><div class="row-actions"><select class="move-select" onchange="moveAthlete(' + a.id + ',this.value)"><option value="">Move to...</option>' + buildMoveOptions(sess.key) + '</select><button class="btn-small btn-delete" onclick="deleteAthlete(' + a.id + ')">&times;</button></div></td></tr>';
+      });
+    }
+    card.innerHTML =
+      '<div class="session-card-header">' +
+        '<div class="session-card-title"><span class="sct-label">' + dayName + '</span>' + sess.type + ' &mdash; ' + dateStr + ' &mdash; ' + sess.time + '</div>' +
+        '<button class="delete-session-btn" onclick="deleteSession(\'' + sess.key + '\',' + attendees.length + ',' + (sess.kind === 'custom' ? 'true' : 'false') + ')">Delete Session</button>' +
+      '</div>' +
+      '<div style="padding:0.6rem 1.2rem;font-size:0.78rem;color:var(--gray);">' + sess.loc + (sess.spots ? ' &middot; ' + sess.spots + ' spots' : '') + '</div>' +
+      '<table class="roster-table">' +
+        '<thead><tr><th>Athlete</th><th>Phone</th><th>Age</th><th>Email</th><th>Present</th><th>Actions</th></tr></thead>' +
+        '<tbody>' + rowsHtml + '</tbody>' +
+      '</table>' +
+      '<button class="add-student-btn" onclick="openAddStudent(\'' + sess.key.replace(/'/g, "\\'") + '\',\'' + sess.type + '\',\'' + sess.date + '\',\'' + sess.time + '\',\'' + sess.loc.replace(/'/g, "\\'") + '\',this)">+ Add Student</button>';
+    container.appendChild(card);
   });
 }
-function filterRoster(filter, btn){
+
+function buildMoveOptions(currentKey){
+  var sessions = getAllUpcomingSessions();
+  var opts = '';
+  sessions.forEach(function(s){
+    if(s.key === currentKey) return;
+    var dateObj = new Date(s.date + 'T12:00:00');
+    var dateStr = (dateObj.getMonth()+1) + '/' + dateObj.getDate();
+    opts += '<option value="' + s.type + '|' + s.date + '|' + s.time + '|' + s.loc.replace(/"/g, '&quot;') + '">' + s.type + ' ' + dateStr + ' ' + s.time + '</option>';
+  });
+  return opts;
+}
+
+function openAddStudent(sessionKey, type, date, time, loc, btn){
+  var parent = btn.parentElement;
+  if(parent.querySelector('.add-student-row')){ return; }
+  var row = document.createElement('div');
+  row.className = 'add-student-row';
+  row.innerHTML =
+    '<input type="text" placeholder="Name *">' +
+    '<input type="tel" placeholder="Phone *">' +
+    '<input type="email" placeholder="Email">' +
+    '<input type="number" placeholder="Age *" min="5" max="99">' +
+    '<button class="btn-small" style="background:var(--red);color:#fff;" onclick="saveAddStudent(this,\'' + type + '\',\'' + date + '\',\'' + time + '\',\'' + loc.replace(/'/g, "\\'") + '\')">Save</button>' +
+    '<button class="btn-small" style="background:transparent;color:var(--gray);border:1px solid var(--bdr);" onclick="this.parentElement.remove()">Cancel</button>';
+  btn.parentElement.insertBefore(row, btn);
+}
+
+function saveAddStudent(btn, type, date, time, loc){
+  var row = btn.parentElement;
+  var inputs = row.querySelectorAll('input');
+  var name = inputs[0].value.trim(), phone = inputs[1].value.trim(), email = inputs[2].value.trim(), age = inputs[3].value;
+  if(!name || !phone || !age){ alert('Name, phone, and age are required.'); return; }
+  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
+  roster.push({ id:Date.now(), name:name, phone:phone, email:email, age:age, session:type, date:date, time:time, loc:loc, present:false });
+  localStorage.setItem('soa_roster', JSON.stringify(roster));
+  renderSessionCards(currentFilter || 'all');
+}
+
+function deleteAthlete(id){
+  if(!confirm('Remove this athlete from the session?')) return;
+  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
+  roster = roster.filter(function(r){ return r.id !== id; });
+  localStorage.setItem('soa_roster', JSON.stringify(roster));
+  renderSessionCards(currentFilter || 'all');
+}
+
+function moveAthlete(id, val){
+  if(!val) return;
+  var parts = val.split('|');
+  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
+  roster.forEach(function(r){
+    if(r.id === id){ r.session = parts[0]; r.date = parts[1]; r.time = parts[2]; r.loc = parts[3]; }
+  });
+  localStorage.setItem('soa_roster', JSON.stringify(roster));
+  renderSessionCards(currentFilter || 'all');
+}
+
+function deleteSession(key, count, isCustom){
+  var msg = count > 0 ? 'Delete this session and remove ' + count + ' registered athlete(s)?' : 'Delete this session?';
+  if(!confirm(msg)) return;
+  // Remove athletes
+  var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
+  if(isCustom){
+    // For custom sessions, key is the id
+    var custom = JSON.parse(localStorage.getItem('soa_custom_sessions') || '[]');
+    var removed = custom.find(function(c){ return String(c.id) === String(key); });
+    if(removed){
+      roster = roster.filter(function(r){ return !(r.session === removed.type && r.date === removed.date && r.time === removed.time); });
+      custom = custom.filter(function(c){ return String(c.id) !== String(key); });
+      localStorage.setItem('soa_custom_sessions', JSON.stringify(custom));
+    }
+  } else {
+    // Recurring: add key to cancelled list, remove roster entries matching
+    var cancelled = JSON.parse(localStorage.getItem('soa_cancelled_dates') || '[]');
+    if(cancelled.indexOf(key) === -1) cancelled.push(key);
+    localStorage.setItem('soa_cancelled_dates', JSON.stringify(cancelled));
+    var parts = key.split('|');
+    roster = roster.filter(function(r){ return !(r.session === parts[0] && r.date === parts[1] && r.time === parts[2]); });
+  }
+  localStorage.setItem('soa_roster', JSON.stringify(roster));
+  renderSessionCards(currentFilter || 'all');
+  renderCalendar(curYear, curMonth);
+  renderUpcoming();
+}
+
+function toggleAddSession(){
+  var form = document.getElementById('addSessionForm');
+  var arrow = document.getElementById('addSessionArrow');
+  form.classList.toggle('open');
+  arrow.innerHTML = form.classList.contains('open') ? '&#9650;' : '&#9660;';
+}
+
+function saveNewSession(){
+  var type = document.getElementById('as-type').value;
+  var date = document.getElementById('as-date').value;
+  var time = document.getElementById('as-time').value.trim();
+  var loc = document.getElementById('as-loc').value.trim();
+  var spots = document.getElementById('as-spots').value;
+  if(!date || !time || !loc){ alert('Date, time, and location are required.'); return; }
+  var custom = JSON.parse(localStorage.getItem('soa_custom_sessions') || '[]');
+  custom.push({ id:Date.now(), type:type, date:date, time:time, location:loc, spots:spots });
+  localStorage.setItem('soa_custom_sessions', JSON.stringify(custom));
+  document.getElementById('as-date').value = '';
+  document.getElementById('as-time').value = '';
+  document.getElementById('as-loc').value = '';
+  document.getElementById('as-spots').value = '12';
+  toggleAddSession();
+  renderSessionCards(currentFilter || 'all');
+  renderCalendar(curYear, curMonth);
+  renderUpcoming();
+}
+
+var currentFilter = 'all';
+function filterSessionCards(filter, btn){
   document.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('active'); });
   btn.classList.add('active');
-  renderRoster(filter);
+  currentFilter = filter;
+  renderSessionCards(filter);
 }
+
 function togglePresent(id, checked){
   var roster = JSON.parse(localStorage.getItem('soa_roster') || '[]');
   roster.forEach(function(r){ if(r.id === id) r.present = checked; });
