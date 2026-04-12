@@ -211,9 +211,9 @@ footer img { height:42px; }
     <div class="cal-day-header">Sat</div>
   </div>
   <div class="cal-legend">
-    <div class="cal-legend-item"><div class="cal-legend-dot red"></div>Group Training — Sat 9AM</div>
-    <div class="cal-legend-item"><div class="cal-legend-dot gold"></div>Coach TJ — Tue 4PM</div>
-    <div class="cal-legend-item"><div class="cal-legend-dot blue"></div>Youth Prep — Thu 5PM</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot gold"></div>Tue 7PM — CFCA</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot blue"></div>Thu 7PM — CFCA</div>
+    <div class="cal-legend-item"><div class="cal-legend-dot red"></div>Sat 9AM — Eagle Nest Park</div>
   </div>
 </div>
 
@@ -234,8 +234,6 @@ footer img { height:42px; }
   <div class="roster-filter">
     <button class="rf-btn active" onclick="filterRoster('all',this)">All</button>
     <button class="rf-btn" onclick="filterRoster('Group Training',this)">Group Training</button>
-    <button class="rf-btn" onclick="filterRoster('Coach TJ',this)">Coach TJ</button>
-    <button class="rf-btn" onclick="filterRoster('Youth Prep',this)">Youth Prep</button>
   </div>
   <table class="roster-table">
     <thead>
@@ -293,9 +291,9 @@ footer img { height:42px; }
 <script>
 // Session definitions
 var SESSIONS = [
-  { day:6, name:'Group Training', time:'9:00 AM', loc:'Eagle Nest Park — 5165 Metrowest Blvd, Orlando FL', cls:'group' },
-  { day:2, name:'Coach TJ', time:'4:00 PM', loc:'First Academy — 2667 Bruton Blvd, Orlando FL 32805', cls:'tj' },
-  { day:4, name:'Youth Prep', time:'5:00 PM', loc:'Eagle Nest Park — 5165 Metrowest Blvd, Orlando FL', cls:'youth' }
+  { day:2, name:'Group Training', time:'7:00 PM', loc:'Central Florida Christian Academy — 700 Good Homes Road, Orlando FL', cls:'tj' },
+  { day:4, name:'Group Training', time:'7:00 PM', loc:'Central Florida Christian Academy — 700 Good Homes Road, Orlando FL', cls:'youth' },
+  { day:6, name:'Group Training', time:'9:00 AM', loc:'Eagle Nest Park — 5165 Metrowest Blvd, Orlando FL', cls:'group' }
 ];
 var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -431,7 +429,7 @@ var adminAuth = false;
 function promptAdmin(){
   if(adminAuth){ toggleAdmin(); return; }
   var pw = prompt('Enter admin password:');
-  if(pw === 'SappAcademy2026'){
+  if(pw === '#November302013'){
     adminAuth = true;
     toggleAdmin();
   } else if(pw !== null){
